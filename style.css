@@ -3417,13 +3417,16 @@ footer a {
 }
 
 .livestock-icon img {
-    width: 85%;
-    height: 85%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
     position: relative;
     z-index: 2;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+    /* Remove white background using multiply (makes white transparent) */
+    mix-blend-mode: multiply;
+    /* Turn the black silhouette into gold */
+    filter: brightness(0) saturate(100%) invert(69%) sepia(48%) saturate(545%) hue-rotate(3deg) brightness(91%) contrast(88%);
 }
 
 .livestock-icon::before {
