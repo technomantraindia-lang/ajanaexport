@@ -1018,4 +1018,49 @@ function initPageLogic() {
             once: true
         });
     });
+
 }
+
+/* ================================
+   QUALITY ANIMATED STRIP LOGIC
+================================ */
+document.addEventListener("DOMContentLoaded", function () {
+  const section = document.getElementById("quality-strip");
+  if (!section) return;
+
+  const items = section.querySelectorAll(".quality-item");
+  if (!items.length) return;
+
+  section.classList.add("js-ready");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          items.forEach(function (item, index) {
+            setTimeout(function () {
+              item.classList.add("is-visible");
+            }, index * 180);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(section);
+  } else {
+    items.forEach(function (item) {
+      item.classList.add("is-visible");
+    });
+  }
+
+  let activeIndex = 0;
+  setInterval(function () {
+    items.forEach(function (item) {
+      item.classList.remove("is-active");
+    });
+
+    items[activeIndex].classList.add("is-active");
+    activeIndex = (activeIndex + 1) % items.length;
+  }, 1800);
+});
