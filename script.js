@@ -1,9 +1,47 @@
-document.addEventListener("DOMContentLoaded", () => {
+async function loadComponent(selector, file) {
+    const container = document.querySelector(selector);
+    if (!container) return;
+    try {
+        const response = await fetch(file);
+        if (response.ok) {
+            const html = await response.text();
+            container.innerHTML = html;
+            return true;
+        }
+    } catch (error) {
+        console.error(`Error loading ${file}:`, error);
+    }
+    return false;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    // 1. Load Components First
+    await Promise.all([
+        loadComponent("#main-header", "header.html"),
+        loadComponent("#main-footer", "footer.html")
+    ]);
+
+    // 2. Initialize Page Logic
+    initPageLogic();
+});
+
+function initPageLogic() {
     const navbar = document.querySelector(".navbar");
     const cursorGlow = document.querySelector(".cursor-glow");
     const menuBtn = document.querySelector(".menu-btn");
     const navLinks = document.querySelector(".nav-links");
     const quickInquiryBtn = document.querySelector(".nav-btn");
+
+    // Fix active link highlighting
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        const href = link.getAttribute("href");
+        if (!href) return;
+        const linkPath = href.split("#")[0];
+        if (linkPath === currentPath) {
+            link.classList.add("active");
+        }
+    });
 
     const onScroll = () => {
         navbar?.classList.toggle("scrolled", window.scrollY > 40);
@@ -12,8 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
     onScroll();
 
     if (quickInquiryBtn) {
-        quickInquiryBtn.addEventListener("click", () => {
-            const target = document.querySelector(quickInquiryBtn.dataset.target || "#contact");
+        quickInquiryBtn.addEventListener("click", (e) => {
+            const targetAttr = quickInquiryBtn.dataset.target;
+            if (!targetAttr) return;
+            if (targetAttr.includes(".html")) {
+                window.location.href = targetAttr;
+                return;
+            }
+            const target = document.querySelector(targetAttr || "#contact");
             target?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
     }
@@ -656,16 +700,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!item) return;
 
             const changeContent = () => {
-                productMainImage.src = item.image;
-                productMainImage.alt = item.name;
-                productImageChip.textContent = item.chip;
-                productCode.textContent = `${String(index + 1).padStart(2, "0")} / 07`;
-                productPill.textContent = item.pill;
-                productTitle.textContent = item.name;
-                productDescription.textContent = item.description;
+                if (productMainImage) {
+                    productMainImage.src = item.image;
+                    productMainImage.alt = item.name;
+                }
+                if (productImageChip) productImageChip.textContent = item.chip;
+                if (productCode) productCode.textContent = `${String(index + 1).padStart(2, "0")} / 07`;
+                if (productPill) productPill.textContent = item.pill;
+                if (productTitle) productTitle.textContent = item.name;
+                if (productDescription) productDescription.textContent = item.description;
 
-                productPoints.innerHTML = item.points.map((point) => `<li>${point}</li>`).join("");
-                productTags.innerHTML = item.tags.map((tag) => `<span>${tag}</span>`).join("");
+                if (productPoints) productPoints.innerHTML = item.points.map((point) => `<li>${point}</li>`).join("");
+                if (productTags) productTags.innerHTML = item.tags.map((tag) => `<span>${tag}</span>`).join("");
             };
 
             if (animate && window.gsap) {
@@ -805,7 +851,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         gsap.to(".export-badge-b", {
             y: 8,
-            duration: 2.1,
+            duration: 2.2,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
@@ -814,184 +860,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const missionStage = document.querySelector(".mission-stage");
     if (missionStage) {
-        gsap.set([".mission-vision", ".mission-mission", ".mission-core", ".mission-core-line"], {
-            transformPerspective: 1300
-        });
-
         const missionTimeline = gsap.timeline({
-            defaults: { ease: "power4.out" },
+            defaults: { ease: "power3.out" },
             scrollTrigger: {
                 trigger: ".mission",
-                start: "top 72%",
+                start: "top 68%",
                 toggleActions: "play none none none",
                 once: true
             }
         });
 
         missionTimeline
-            .fromTo(".mission-heading", {
-                y: 34,
-                opacity: 0,
-                rotationX: -8,
-                filter: "blur(8px)"
-            }, {
-                y: 0,
-                opacity: 1,
-                rotationX: 0,
-                filter: "blur(0px)",
-                duration: 0.8
-            }, 0)
+            .fromTo(".mission-heading", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0)
             .fromTo(".mission-vision", {
-                x: -150,
-                y: -70,
-                z: -180,
-                rotationY: 18,
-                rotationX: -10,
+                x: -120,
+                rotationY: 25,
                 opacity: 0
             }, {
                 x: 0,
-                y: 0,
-                z: 0,
                 rotationY: 0,
-                rotationX: 0,
                 opacity: 1,
-                duration: 1.05
-            }, 0.12)
+                duration: 0.95
+            }, 0.1)
             .fromTo(".mission-mission", {
-                x: 150,
-                y: 70,
-                z: -180,
-                rotationY: -18,
-                rotationX: 10,
+                x: 120,
+                rotationY: -25,
                 opacity: 0
             }, {
                 x: 0,
-                y: 0,
-                z: 0,
                 rotationY: 0,
-                rotationX: 0,
                 opacity: 1,
-                duration: 1.05
-            }, 0.18)
+                duration: 0.95
+            }, 0.1)
             .fromTo(".mission-core", {
-                scale: 0.7,
-                rotationY: 120,
-                z: -160,
-                opacity: 0
-            }, {
-                scale: 1,
-                rotationY: 0,
-                z: 0,
-                opacity: 1,
-                duration: 1.15,
-                ease: "back.out(1.3)"
-            }, 0.25)
-            .fromTo(".mission-core-line", {
                 scale: 0.6,
+                opacity: 0,
+                rotationX: -45
+            }, {
+                scale: 1,
+                opacity: 1,
+                rotationX: 0,
+                duration: 1.1,
+                ease: "back.out(1.5)"
+            }, 0.2)
+            .fromTo(".mission-core-line", {
+                scale: 0,
                 opacity: 0
             }, {
                 scale: 1,
                 opacity: 1,
-                stagger: 0.11,
-                duration: 0.72
-            }, 0.3)
-            .fromTo(".mission-panel-top span", {
-                y: 14,
-                opacity: 0
-            }, {
-                y: 0,
-                opacity: 1,
-                stagger: 0.08,
-                duration: 0.5
-            }, 0.44)
-            .fromTo(".mission-panel ul li", {
-                x: -14,
-                opacity: 0
-            }, {
-                x: 0,
-                opacity: 1,
-                stagger: 0.06,
-                duration: 0.45
-            }, 0.5);
-
-        gsap.to(".line-a", {
-            rotate: 360,
-            duration: 28,
-            ease: "none",
-            repeat: -1
-        });
-
-        gsap.to(".line-b", {
-            rotate: -360,
-            duration: 22,
-            ease: "none",
-            repeat: -1
-        });
-
-        gsap.to(".line-c", {
-            rotate: 360,
-            duration: 16,
-            ease: "none",
-            repeat: -1
-        });
-
-        const missionLayout = document.querySelector(".mission-layout");
-        const hasFinePointerMission = window.matchMedia("(pointer:fine)").matches;
-        if (missionLayout && hasFinePointerMission) {
-            missionLayout.addEventListener("mousemove", (e) => {
-                const rect = missionLayout.getBoundingClientRect();
-                const relX = (e.clientX - rect.left) / rect.width - 0.5;
-                const relY = (e.clientY - rect.top) / rect.height - 0.5;
-
-                gsap.to(".mission-vision", {
-                    rotateY: relX * 10,
-                    rotateX: relY * -8,
-                    z: 30,
-                    duration: 0.45,
-                    ease: "power3.out"
-                });
-
-                gsap.to(".mission-mission", {
-                    rotateY: relX * 10,
-                    rotateX: relY * -8,
-                    z: 30,
-                    duration: 0.45,
-                    ease: "power3.out"
-                });
-
-                gsap.to(".mission-core", {
-                    rotateY: relX * 14,
-                    rotateX: relY * -12,
-                    z: 44,
-                    duration: 0.45,
-                    ease: "power3.out"
-                });
-            });
-
-            missionLayout.addEventListener("mouseleave", () => {
-                gsap.to([".mission-vision", ".mission-mission"], {
-                    rotateY: 0,
-                    rotateX: 0,
-                    z: 0,
-                    duration: 0.55,
-                    ease: "power3.out"
-                });
-
-                gsap.to(".mission-core", {
-                    rotateY: 0,
-                    rotateX: 0,
-                    z: 0,
-                    duration: 0.55,
-                    ease: "power3.out"
-                });
-            });
-        }
+                stagger: 0.1,
+                duration: 0.8
+            }, 0.4);
     }
 
     const ctaStage = document.querySelector(".cta-stage");
     if (ctaStage) {
         const ctaTimeline = gsap.timeline({
-            defaults: { ease: "power4.out" },
+            defaults: { ease: "power3.out" },
             scrollTrigger: {
                 trigger: "#contact",
                 start: "top 72%",
@@ -1003,126 +929,93 @@ document.addEventListener("DOMContentLoaded", () => {
         ctaTimeline
             .fromTo(".cta-visual", {
                 x: -70,
-                opacity: 0,
-                rotationY: 10
-            }, {
-                x: 0,
-                opacity: 1,
-                rotationY: 0,
-                duration: 0.95
-            }, 0)
-            .fromTo(".cta-content .tag, .cta-content h2, .cta-content p", {
-                y: 22,
+                rotationY: 15,
                 opacity: 0
             }, {
-                y: 0,
+                x: 0,
+                rotationY: 0,
                 opacity: 1,
-                stagger: 0.08,
-                duration: 0.55
-            }, 0.12)
-            .fromTo(".cta-meta div", {
-                y: 20,
-                opacity: 0,
-                rotationX: -16
-            }, {
-                y: 0,
-                opacity: 1,
-                rotationX: 0,
-                stagger: 0.08,
-                duration: 0.5
-            }, 0.28)
-            .fromTo(".cta-actions .btn", {
-                y: 18,
+                duration: 0.9
+            }, 0)
+            .fromTo(".cta-content h2, .cta-content p, .cta-meta", {
+                y: 30,
                 opacity: 0
             }, {
                 y: 0,
                 opacity: 1,
                 stagger: 0.1,
-                duration: 0.55
-            }, 0.38)
-            .fromTo(".cta-float", {
-                scale: 0.8,
+                duration: 0.65
+            }, 0.1)
+            .fromTo(".cta-actions a", {
+                scale: 0.85,
                 opacity: 0
             }, {
                 scale: 1,
                 opacity: 1,
+                stagger: 0.12,
+                duration: 0.6,
+                ease: "back.out(1.4)"
+            }, 0.3)
+            .fromTo(".cta-float", {
+                y: 20,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
                 stagger: 0.1,
-                duration: 0.45
-            }, 0.3);
+                duration: 0.5
+            }, 0.4);
     }
+
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const rx = (y / rect.height - 0.5) * -12;
+            const ry = (x / rect.width - 0.5) * 12;
+
+            gsap.to(card, {
+                rotateX: rx,
+                rotateY: ry,
+                scale: 1.025,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        });
+
+        card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+    });
 
     document.querySelectorAll("[data-count]").forEach((counter) => {
-        const target = Number(counter.dataset.count || 0);
-        const countObj = { value: 0 };
-
-        gsap.to(countObj, {
-            value: target,
-            duration: 1.9,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: counter,
-                start: "top 90%",
-                once: true
+        const count = parseInt(counter.dataset.count);
+        ScrollTrigger.create({
+            trigger: counter,
+            start: "top 92%",
+            onEnter: () => {
+                let current = 0;
+                const step = count / 45;
+                const update = () => {
+                    current += step;
+                    if (current < count) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.textContent = `${count}+`;
+                    }
+                };
+                update();
             },
-            onUpdate: () => {
-                counter.textContent = `${Math.round(countObj.value)}+`;
-            }
+            once: true
         });
     });
-
-    document.querySelectorAll(".btn").forEach((button) => {
-        button.addEventListener("mousemove", (e) => {
-            const rect = button.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            gsap.to(button, {
-                x: x * 0.14,
-                y: y * 0.2,
-                duration: 0.34,
-                ease: "power3.out"
-            });
-        });
-
-        button.addEventListener("mouseleave", () => {
-            gsap.to(button, {
-                x: 0,
-                y: 0,
-                duration: 0.5,
-                ease: "elastic.out(1, 0.42)"
-            });
-        });
-    });
-
-    const hasFinePointer = window.matchMedia("(pointer:fine)").matches;
-    if (hasFinePointer) {
-        document.querySelectorAll(".tilt-card").forEach((card) => {
-            card.addEventListener("mousemove", (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const rotateX = ((y - rect.height / 2) / rect.height) * -8;
-                const rotateY = ((x - rect.width / 2) / rect.width) * 8;
-
-                gsap.to(card, {
-                    rotateX,
-                    rotateY,
-                    transformPerspective: 950,
-                    transformOrigin: "center",
-                    duration: 0.35,
-                    ease: "power2.out"
-                });
-            });
-
-            card.addEventListener("mouseleave", () => {
-                gsap.to(card, {
-                    rotateX: 0,
-                    rotateY: 0,
-                    duration: 0.45,
-                    ease: "power3.out"
-                });
-            });
-        });
-    }
-});
+}

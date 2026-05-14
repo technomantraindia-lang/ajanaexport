@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Export | Coming Soon - Ajana Impex Pvt. Ltd.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .coming-soon-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coming-soon-content {
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .coming-soon-content h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        .coming-soon-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .coming-soon-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-progress"></div>
+    <div class="cursor-glow"></div>
+
+    <header id="main-header"></header>
+
+    <main>
+        <section class="coming-soon-hero">
+            <div class="coming-soon-bg">
+                <video autoplay muted loop playsinline>
+                    <source src="Videos and images/ajana video.mp4" type="video/mp4" />
+                </video>
+            </div>
+            
+            <div class="container coming-soon-content">
+                <span class="tag reveal-up">Coming Soon</span>
+                <h1 class="reveal-up">Global Export</h1>
+                <p class="reveal-up">We are expanding our horizons. Details about our international logistics, compliance, and global reach will be available shortly.</p>
+                <div class="reveal-up">
+                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
