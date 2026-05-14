@@ -2,701 +2,553 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajana Impex Pvt. Ltd. | Premium Animal Feed Ingredients & Supplements</title>
-    <meta name="description"
-        content="Ajana Impex Pvt. Ltd. is a trusted manufacturer, supplier, and exporter of high-quality animal feed ingredients, serving customers across India and global markets.">
-    <link rel="stylesheet" href="style.css">
-    <!-- Swiper.js for Carousel -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <!-- GSAP for 3D Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajana Impex Pvt. Ltd. | Premium Animal Feed Ingredients</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+    <div class="page-progress"></div>
+    <div class="cursor-glow"></div>
 
-    <nav>
+    <nav class="navbar">
         <a href="#home" class="logo">
-            <img src="Videos and images/Ajana Impex Logo.png" alt="Ajana Impex Logo">
+            <img src="Videos and images/Ajana Impex Logo.png" alt="Ajana Impex Logo" />
         </a>
+
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
+            <li><a href="#why">Strengths</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#products">Products</a></li>
-            <li><a href="#export">Global Exports</a></li>
+            <li><a href="#export">Exports</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="nav-actions">
-            <a href="#contact" class="btn-inquiry">Quick Inquiry</a>
-            <button class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
+
+        <button class="btn nav-btn" data-target="#contact">Quick Inquiry</button>
+
+        <button class="menu-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <section id="home" class="hero-carousel swiper">
-        <div class="swiper-wrapper">
-            <!-- Slide 1: Main Hero Video -->
-            <div class="swiper-slide">
-                <div class="hero-slide-content video-slide">
-                    <video autoplay muted loop playsinline preload="auto" poster="Videos%20and%20images/hero.png"
-                        class="hero-video">
-                        <source src="Videos%20and%20images/herrovideo.mov" type="video/mp4">
-                        <source src="Videos%20and%20images/herrovideo.mov" type="video/quicktime">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="hero-overlay"></div>
-                    <div class="hero-text">
-                        <span class="highlight-tag">Global Export Leader</span>
-                        <h1>Excellence in Animal <br>Nutrition Solutions</h1>
-                        <p>Ajana Impex Pvt. Ltd. is a trusted manufacturer and exporter of premium feed ingredients,
-                            serving livestock and aqua industries worldwide.</p>
-                        <div class="hero-btns">
-                            <a href="#products" class="btn-primary">Explore Products</a>
-                            <a href="javascript:void(0)" onclick="openInquiryModal()" class="btn-hero-outline">Contact
-                                Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Slide 2: Main Hero -->
-            <div class="swiper-slide">
-                <div class="hero-slide-content" style="background-image: url('Videos and images/hero.png');">
-                    <div class="hero-overlay"></div>
-                    <div class="hero-text">
-                        <span class="highlight-tag">Trusted Since 2012</span>
-                        <h1>Premium Animal Feed <br>Ingredients & Supplements</h1>
-                        <p>Ajana Impex Pvt. Ltd. is a leading manufacturer, supplier, and exporter serving 25+ countries
-                            worldwide.</p>
-                        <div class="hero-btns">
-                            <a href="#products" class="btn-primary">Explore Products</a>
-                            <a href="javascript:void(0)" onclick="openInquiryModal()" class="btn-hero-outline">Contact
-                                Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+    <section id="home" class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="Videos and images/ajana video.mp4" type="video/mp4" />
+        </video>
     </section>
 
-    <section class="strengths-v3" id="why-choose-us">
-        <div class="grain-orb orb-one"></div>
-        <div class="grain-orb orb-two"></div>
-
-        <div class="strengths-v3-container">
-            <div class="section-header strength-header">
-                <span class="mini-label">Our Core Strengths</span>
-                <h2>Why Partner With <br>Ajana Impex?</h2>
+    <section id="why" class="why section-animate">
+        <div class="container why-scene">
+            <div class="section-title why-heading">
+                <span class="tag">Our Core Strengths</span>
+                <h2>Why Partner With Ajana Impex?</h2>
                 <p>
                     Practical feed solutions, dependable supply, and export-ready service for livestock and feed
                     businesses.
                 </p>
             </div>
 
-            <div class="strengths-3d-layout">
-
-                <div class="strength-panel left-panel">
-                    <div class="strength-card-3d" data-index="01">
-                        <div class="icon-coin">💡</div>
-                        <div class="card-text">
-                            <h3>Practical Innovation</h3>
-                            <p>Feed solutions shaped by industry needs, product knowledge, and real market demand.</p>
+            <div class="why-layout why-layout-3d">
+                <div class="why-col why-col-left">
+                    <div class="why-card why-card-3d why-left-1 tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4" />
+                                <circle cx="12" cy="12" r="4" />
+                            </svg>
                         </div>
+                        <h3>Practical Innovation</h3>
+                        <p>Feed solutions shaped by industry needs and real market demand.</p>
                     </div>
 
-                    <div class="strength-card-3d" data-index="03">
-                        <div class="icon-coin">🌾</div>
-                        <div class="card-text">
-                            <h3>Consistent Quality</h3>
-                            <p>Carefully selected feed ingredients with focus on dependable quality and usability.</p>
+                    <div class="why-card why-card-3d why-left-2 tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 21V7" />
+                                <path d="M7 10c-3 0-5-2-5-5 4 0 7 2 7 5" />
+                                <path d="M17 10c3 0 5-2 5-5-4 0-7 2-7 5" />
+                            </svg>
                         </div>
-                    </div>
-
-                    <div class="strength-card-3d" data-index="05">
-                        <div class="icon-coin">🚚</div>
-                        <div class="card-text">
-                            <h3>Reliable Supply</h3>
-                            <p>Strong sourcing and logistics support for Indian and international buyers.</p>
-                        </div>
+                        <h3>Consistent Quality</h3>
+                        <p>Carefully selected feed ingredients with dependable quality.</p>
                     </div>
                 </div>
 
-                <div class="center-3d-hub">
-                    <div class="hub-rings-v4">
-                        <div class="v4-ring"></div>
-                        <div class="v4-ring"></div>
-                    </div>
-                    <div class="main-emblem-v4">
-                        <div class="v4-emblem-icon">🌍</div>
-                        <h3>Trusted Feed <br> Solutions</h3>
-                        <p>Manufactured, supplied, and exported with care.</p>
+                <div class="center-hub why-hub-wrap">
+                    <div class="ring ring-one"></div>
+                    <div class="ring ring-two"></div>
+                    <div class="hub-glow"></div>
+
+                    <div class="hub-card why-hub-card tilt-card">
+                        <div class="hub-globe-wrap">
+                            <span class="hub-globe-orbit"></span>
+                            <svg class="hub-globe" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <path
+                                    d="M2 12h20M12 2c3 3 4.5 6.5 4.5 10S15 19 12 22M12 2C9 5 7.5 8.5 7.5 12S9 19 12 22" />
+                            </svg>
+                        </div>
+                        <h3 class="hub-title">
+                            <span>Global Feed</span>
+                            <span>Network</span>
+                        </h3>
                     </div>
                 </div>
 
-                <div class="strength-panel right-panel">
-                    <div class="strength-card-3d" data-index="02">
-                        <div class="icon-coin">⚙️</div>
-                        <div class="card-text">
-                            <h3>Process Driven</h3>
-                            <p>A structured approach that supports smoother handling, packing, and delivery.</p>
+                <div class="why-col why-col-right">
+                    <div class="why-card why-card-3d why-right-1 tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3 7h11v10H3z" />
+                                <path d="M14 10h4l3 3v4h-7z" />
+                                <circle cx="7" cy="17" r="2" />
+                                <circle cx="18" cy="17" r="2" />
+                            </svg>
                         </div>
+                        <h3>Reliable Supply</h3>
+                        <p>Strong sourcing and logistics support for Indian and international buyers.</p>
                     </div>
 
-                    <div class="strength-card-3d" data-index="04">
-                        <div class="icon-coin">💰</div>
-                        <div class="card-text">
-                            <h3>Workable Pricing</h3>
-                            <p>Balanced pricing that supports long-term business without compromising product value.</p>
+                    <div class="why-card why-card-3d why-right-2 tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.8" />
+                            </svg>
                         </div>
-                    </div>
-
-                    <div class="strength-card-3d" data-index="06">
-                        <div class="icon-coin">🤝</div>
-                        <div class="card-text">
-                            <h3>Responsive Support</h3>
-                            <p>Clear communication and timely assistance for smooth customer relationships.</p>
-                        </div>
+                        <h3>Responsive Support</h3>
+                        <p>Clear communication and timely assistance for smooth customer relationships.</p>
                     </div>
                 </div>
-
             </div>
 
-            <div class="strengths-bottom-strip">
-                <div><strong>12+</strong><span>Years Experience</span></div>
-                <div><strong>15+</strong><span>Products</span></div>
-                <div><strong>25+</strong><span>Countries Covered</span></div>
-                <div><strong>500+</strong><span>Happy Clients</span></div>
+            <div class="bottom-stats why-stats">
+                <div><strong data-count="12">0</strong><span>Years</span></div>
+                <div><strong data-count="15">0</strong><span>Products</span></div>
+                <div><strong data-count="25">0</strong><span>Countries</span></div>
+                <div><strong data-count="500">0</strong><span>Clients</span></div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about-v2">
-        <div class="about-container">
+    <section id="about" class="about section-animate">
+        <div class="container about-premium">
+            <div class="about-copy">
+                <span class="tag about-kicker">Established 2012</span>
+                <h2 class="about-title">Welcome to Ajana Impex Pvt. Ltd.</h2>
 
-            <!-- Left Content -->
-            <div class="about-text-side">
-                <div class="about-intro">
-                    <div class="est-tag">
-                        <span class="line"></span>
-                        <span>Established 2012</span>
-                        <span class="leaf">🌾</span>
-                    </div>
-
-                    <h1>Welcome to Ajana Impex Pvt. Ltd.</h1>
-                    <h4 class="sub-heading">WHO WE ARE</h4>
-                </div>
-
-                <div class="about-bullet-points">
-                    <div class="bullet-item">
-                        <div class="bullet-icon">🍃</div>
-                        <p>
-                            We are a reliable supplier of <strong>Meat Bone Meal</strong>
-                            and other feed products in India and other countries.
-                        </p>
-                    </div>
-
-                    <div class="bullet-item">
-                        <div class="bullet-icon">🛡️</div>
-                        <p>
-                            With more than <strong>12 years of experience</strong>,
-                            we are a trusted name in the animal feed products industry.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="about-description">
-                    <p>
-                        Welcome to the world of Ajana Impex Private Limited, a certified MSME
-                        company started in January 2012 in Rajkot, Gujarat, India. Founded by
-                        <strong>Mr. Mahipat Ajana</strong>, the company serves farmers and feed
-                        manufacturers with quality animal feed products and supplements.
-                    </p>
-
-                    <p>
-                        We are a trusted manufacturer and supplier of Meat Bone Meal, Poultry Meal,
-                        Fish Meal, Corn Gluten Meal, Ground Nut DOC, Cotton Seed DOC, Castor DOC,
-                        Soya DOC, Rice Gluten Meal, Feed Rice, Wheat, Rice DDGS, Rapeseed DOC,
-                        Sunflower DOC, Guar Korma, DORB and other feed supplements.
-                    </p>
-                </div>
-
-                <div class="about-feature-grid">
-                    <div class="feature-card-v2">
-                        <div class="feature-icon-box">🏅</div>
-                        <h3>Quality Assured Products</h3>
-                        <p>Premium quality feed products for reliable business use.</p>
-                    </div>
-
-                    <div class="feature-card-v2">
-                        <div class="feature-icon-box">🚛</div>
-                        <h3>Strong Supply Chain</h3>
-                        <p>Reliable sourcing and delivery across 25+ countries.</p>
-                    </div>
-
-                    <div class="feature-card-v2">
-                        <div class="feature-icon-box">🏷️</div>
-                        <h3>Industry-Leading Prices</h3>
-                        <p>Affordable and competitive pricing for bulk buyers.</p>
-                    </div>
-
-                    <div class="feature-card-v2">
-                        <div class="feature-icon-box">🤝</div>
-                        <h3>Customer Feedback</h3>
-                        <p>Strong customer relations and dependable support.</p>
-                    </div>
-                </div>
-
-                <a href="#products" class="btn-explore-v2">
-                    Explore Our Products <span class="arrow-circle">→</span>
-                </a>
-            </div>
-
-            <!-- Right Visual -->
-            <div class="about-visual-side">
-                <div class="visual-stack">
-                    <div class="main-image-wrapper">
-                        <img src="Videos and images/bufallo eating.jpg" alt="Livestock Feeding" class="main-img">
-                    </div>
-
-                    <div class="sub-image-wrapper">
-                        <img src="Videos and images/hens.jpg" alt="Poultry Feeding" class="sub-img">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="products" class="products-premium">
-        <div class="products-bg-leaf leaf-left"></div>
-        <div class="products-bg-line"></div>
-
-        <div class="products-container">
-            <div class="products-header">
-                <span class="catalog-label">CATALOG</span>
-                <h2>Our Products</h2>
-                <p>
-                    At Ajana Impex Pvt. Ltd., we carefully source, process, and supply
-                    quality feed ingredients for livestock, poultry, cattle, and aqua feed industries.
+                <p class="about-lead">
+                    We are a reliable manufacturer, supplier, and exporter of quality animal feed ingredients from
+                    Rajkot, Gujarat, India.
                 </p>
-            </div>
 
-            <div class="products-grid-premium">
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/rice_ddgs.jpg" alt="Rice DDGS">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🌾</div>
-                        <div>
-                            <h3>Rice DDGS</h3>
-                            <span>Cattle Feed Ingredient</span>
-                        </div>
-                    </div>
-                </div>
+                <p class="about-body">
+                    Founded by Mr. Mahipat Ajana, Ajana Impex serves farmers, feed manufacturers, and global buyers with
+                    products like Meat Bone Meal, Poultry Meal, Fish Meal, Corn Gluten Meal, Rice DDGS, Corn DDGS, DOC
+                    products, Feed Rice, Wheat, and feed supplements.
+                </p>
 
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/corn_ddgs.jpg" alt="Corn DDGS">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🌽</div>
-                        <div>
-                            <h3>Corn DDGS</h3>
-                            <span>Cattle Feed Ingredient</span>
+                <div class="about-usp-grid">
+                    <article class="about-usp-card about-usp-a tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z" />
+                            </svg>
                         </div>
-                    </div>
-                </div>
+                        <h3>Quality Assured</h3>
+                        <p>Every lot is selected with strict quality attention before dispatch.</p>
+                    </article>
 
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/mbm.jpg" alt="Meat Bone Meal">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🦴</div>
-                        <div>
-                            <h3>Meat Bone Meal</h3>
-                            <span>Protein & Mineral Source</span>
+                    <article class="about-usp-card about-usp-b tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3 7h11v10H3z" />
+                                <path d="M14 10h4l3 3v4h-7z" />
+                                <circle cx="7" cy="17" r="2" />
+                                <circle cx="18" cy="17" r="2" />
+                            </svg>
                         </div>
-                    </div>
-                </div>
+                        <h3>Strong Supply Chain</h3>
+                        <p>Reliable sourcing and logistics for domestic and export requirements.</p>
+                    </article>
 
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/hens.jpg" alt="Poultry Meal">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🐔</div>
-                        <div>
-                            <h3>Poultry Meal</h3>
-                            <span>Poultry Nutrition</span>
+                    <article class="about-usp-card about-usp-c tilt-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2v20" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6" />
+                            </svg>
                         </div>
-                    </div>
-                </div>
-
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/fish_meal.jpg" alt="Fish Meal">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🐟</div>
-                        <div>
-                            <h3>Fish Meal</h3>
-                            <span>Aqua Feed Ingredient</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/corn_gluten.jpg" alt="Corn Gluten Meal">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🌿</div>
-                        <div>
-                            <h3>Corn Gluten Meal</h3>
-                            <span>Plant Protein Source</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/food bag.jpg" alt="Rapeseed DOC">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🌼</div>
-                        <div>
-                            <h3>Rapeseed DOC</h3>
-                            <span>High Protein Ingredient</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card-premium">
-                    <div class="product-img">
-                        <img src="Videos and images/food bag.jpg" alt="DORB">
-                    </div>
-                    <div class="product-info-premium">
-                        <div class="product-icon">🍃</div>
-                        <div>
-                            <h3>DORB</h3>
-                            <span>De-Oiled Rice Bran</span>
-                        </div>
-                    </div>
+                        <h3>Workable Pricing</h3>
+                        <p>Practical pricing aligned with long-term customer partnerships.</p>
+                    </article>
                 </div>
             </div>
 
-            <div class="products-bottom-note">
-                <span>🌿</span>
-                Quality Ingredients. Better Nutrition. Stronger Future.
-            </div>
-        </div>
-    </section>
+            <div class="about-visual-wrap">
+                <div class="about-frame about-frame-main tilt-card">
+                    <img src="Videos and images/bufallo eating.jpg" alt="Buffalo Feeding" />
+                </div>
 
-    <section id="export" class="global-export">
-        <div class="export-visual">
-            <!-- Using food bag image for product focus -->
-            <img src="Videos and images/food bag.jpg" alt="Global Supply"
-                style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-        </div>
-        <div class="export-content">
-            <h2>Supplying Quality Feed Ingredients Worldwide</h2>
-            <p>Ajana Impex Pvt. Ltd. exports premium animal feed ingredients and feed supplements to more than 25
-                countries. Our strong supply chain, quality-focused process, and reliable delivery make us a trusted
-                partner.</p>
-            <div class="market-tags">
-                <span class="market-tag">USA</span><span class="market-tag">UK</span><span
-                    class="market-tag">Australia</span>
-                <span class="market-tag">Canada</span><span class="market-tag">UAE</span><span
-                    class="market-tag">Russia</span>
-                <span class="market-tag">Indonesia</span><span class="market-tag">China</span><span
-                    class="market-tag">Malaysia</span>
-                <span class="market-tag">France</span><span class="market-tag">Poland</span><span
-                    class="market-tag">Spain</span>
-                <span class="market-tag">Singapore</span><span class="market-tag">Germany</span><span
-                    class="market-tag">Korea</span>
-                <span class="market-tag">South Africa</span><span class="market-tag">Turkey</span><span
-                    class="market-tag">Egypt</span>
-                <span class="market-tag">Bangladesh</span><span class="market-tag">Vietnam</span><span
-                    class="market-tag">Taipei</span>
-                <span class="market-tag">Thailand</span><span class="market-tag">Philippines</span><span
-                    class="market-tag">Belgium</span>
-                <span class="market-tag">Sri Lanka</span><span class="market-tag">Italy</span>
-            </div>
-        </div>
-    </section>
+                <div class="about-frame about-frame-side tilt-card">
+                    <img src="Videos and images/hens.jpg" alt="Poultry Feeding" />
+                </div>
 
-    <section class="v-m-section-premium">
-        <div class="v-m-bg-leaf-top"></div>
-        <div class="v-m-bg-dots"></div>
+                <div class="about-floating about-floating-top">
+                    <strong>12+</strong>
+                    <span>Years in Feed Industry</span>
+                </div>
 
-        <div class="v-m-header">
-            <div class="v-m-mini-label">
-                <span class="v-m-line"></span>
-                <span>AJANA IMPEX PVT. LTD.</span>
-                <span class="v-m-line"></span>
-            </div>
-            <h2>Our Vision & Mission</h2>
-            <div class="v-m-divider">
-                <span class="v-m-div-line"></span>
-                <span class="v-m-leaf">🌿</span>
-                <span class="v-m-div-line"></span>
-            </div>
-            <p>Focused on quality feed ingredients, reliable supply, and long-term customer trust.</p>
-        </div>
+                <div class="about-floating about-floating-bottom">
+                    <strong>25+</strong>
+                    <span>Global Export Markets</span>
+                </div>
 
-        <div class="v-m-grid-premium">
-            <!-- Vision Card -->
-            <div class="v-m-card-premium vision-p">
-                <div class="v-m-icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
+                <div class="about-quality-seal">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9L12 2z" />
                     </svg>
+                    <strong>Premium Quality</strong>
                 </div>
-                <h3>Our Vision</h3>
-                <div class="v-m-card-line"></div>
-                <p>Our vision is to promote world-class quality animal feed ingredients and feed supplements for
-                    farmers,
-                    feed manufacturers, and livestock businesses across India and global markets.</p>
-                <div class="v-m-watermark leaf-wm"></div>
-            </div>
-
-            <!-- Mission Card -->
-            <div class="v-m-card-premium mission-p">
-                <div class="v-m-icon-box">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <circle cx="12" cy="12" r="6"></circle>
-                        <circle cx="12" cy="12" r="2"></circle>
-                    </svg>
-                </div>
-                <h3>Our Mission</h3>
-                <div class="v-m-card-line"></div>
-                <p>Our mission is to deliver high-quality, reliable, and affordable animal feed products while building
-                    long-term relationships with customers through trust, service, and consistent quality.</p>
-                <div class="v-m-watermark target-wm"></div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-v3">
-        <div class="testimonials-header">
-            <div class="t-mini-label">
-                <span class="t-line"></span>
-                <span>CLIENT TESTIMONIALS</span>
-                <span class="t-line"></span>
+    <section id="products" class="products section-animate">
+        <div class="container">
+            <div class="section-title product-heading">
+                <span class="tag">Catalog</span>
+                <h2>Interactive Product Showcase</h2>
+                <p>Click each yellow step to view product photo, quality profile, and key feed details.</p>
             </div>
-            <h2>What Our Clients Say</h2>
-            <p>Real feedback from farmers, feed manufacturers, and global buyers who trust Ajana Impex for quality and
-                reliable supply.</p>
-        </div>
 
-        <div class="testimonials-container">
-            <div class="swiper testimonials-slider">
-                <div class="swiper-wrapper">
-                    <!-- Testimonial 1 -->
-                    <div class="swiper-slide testimonial-card">
-                        <div class="quote-icon">“</div>
-                        <p class="testimonial-text">Ajana Impex has been a dependable partner for our poultry feed
-                            business. Their quality consistency and on-time supply help us run our production smoothly.
+            <div class="product-switcher">
+                <aside class="product-nav">
+                    <div class="product-nav-line"></div>
+
+                    <button class="product-step is-active" data-product-index="0" aria-label="Show Corn DDGS">
+                        <span class="step-box"></span>
+                        <span class="step-text">01</span>
+                    </button>
+                    <button class="product-step" data-product-index="1" aria-label="Show Rice DDGS">
+                        <span class="step-box"></span>
+                        <span class="step-text">02</span>
+                    </button>
+                    <button class="product-step" data-product-index="2" aria-label="Show Rice Protein Meal">
+                        <span class="step-box"></span>
+                        <span class="step-text">03</span>
+                    </button>
+                    <button class="product-step" data-product-index="3" aria-label="Show Deoiled Corn DDGS">
+                        <span class="step-box"></span>
+                        <span class="step-text">04</span>
+                    </button>
+                    <button class="product-step" data-product-index="4" aria-label="Show Corn Gluten Meal">
+                        <span class="step-box"></span>
+                        <span class="step-text">05</span>
+                    </button>
+                    <button class="product-step" data-product-index="5" aria-label="Show Corn Feed Meal">
+                        <span class="step-box"></span>
+                        <span class="step-text">06</span>
+                    </button>
+                    <button class="product-step" data-product-index="6" aria-label="Show Soyabean Meal">
+                        <span class="step-box"></span>
+                        <span class="step-text">07</span>
+                    </button>
+                </aside>
+
+                <div class="product-view tilt-card">
+                    <div class="product-image-panel">
+                        <img id="productMainImage" src="Videos and images/corn_ddgs.jpg" alt="Corn DDGS" />
+                        <div class="product-image-overlay"></div>
+                        <div class="product-image-chip" id="productImageChip">Premium Feed Grade</div>
+                    </div>
+
+                    <div class="product-content-panel">
+                        <div class="product-content-top">
+                            <span id="productCode">01 / 07</span>
+                            <span class="product-pill" id="productPill">Cattle Feed Ingredient</span>
+                        </div>
+
+                        <h3 id="productTitle">CORN DDGS</h3>
+                        <p id="productDescription">
+                            Protein-rich and digestible feed ingredient suitable for cattle ration balancing and
+                            performance-based feed formulations.
                         </p>
-                        <div class="testimonial-user">
-                            <img src="Videos and images/rakesh.png" alt="Rakesh Patel" class="user-avatar">
-                            <div class="user-info">
-                                <strong>Rakesh Patel</strong>
-                                <span>Poultry Feed Manufacturer</span>
-                                <small>Gujarat, India</small>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Testimonial 2 -->
-                    <div class="swiper-slide testimonial-card">
-                        <div class="quote-icon">“</div>
-                        <p class="testimonial-text">We value their practical pricing, responsive support, and reliable
-                            supply of products like Meat Bone Meal and Rice DDGS. A truly trustworthy supplier.</p>
-                        <div class="testimonial-user">
-                            <img src="Videos and images/suresh.png" alt="Suresh Agro Farm" class="user-avatar">
-                            <div class="user-info">
-                                <strong>Suresh Agro Farm</strong>
-                                <span>Livestock Feed Buyer</span>
-                                <small>Maharashtra, India</small>
-                            </div>
-                        </div>
-                    </div>
+                        <ul class="product-points" id="productPoints">
+                            <li>High consistency for controlled feed formulation.</li>
+                            <li>Supports livestock nutrition and weight gain plans.</li>
+                            <li>Available for domestic and export bulk supply.</li>
+                        </ul>
 
-                    <!-- Testimonial 3 -->
-                    <div class="swiper-slide testimonial-card">
-                        <div class="quote-icon">“</div>
-                        <p class="testimonial-text">Professional coordination, reliable documentation, and steady
-                            product quality make Ajana Impex a trusted supplier for our market.</p>
-                        <div class="testimonial-user">
-                            <img src="Videos and images/amina.png" alt="Amina Traders" class="user-avatar">
-                            <div class="user-info">
-                                <strong>Amina Traders</strong>
-                                <span>Export Buyer</span>
-                                <small>UAE</small>
-                            </div>
+                        <div class="product-quick-tags" id="productTags">
+                            <span>Protein Rich</span>
+                            <span>Bulk Supply</span>
+                            <span>Export Ready</span>
                         </div>
                     </div>
                 </div>
-                <!-- Pagination & Nav -->
-                <div class="swiper-pagination t-pagination"></div>
-                <div class="swiper-button-prev t-btn-prev"></div>
-                <div class="swiper-button-next t-btn-next"></div>
             </div>
         </div>
     </section>
 
-    <!-- Inquiry Banner Section -->
-    <section class="inquiry-banner">
-        <div class="inquiry-banner-container">
-            <div class="inquiry-header">
-                <div class="inquiry-mini-label">
-                    <span class="inquiry-line"></span>
-                    <span>QUICK INQUIRY</span>
-                    <span class="inquiry-line"></span>
+    <section id="export" class="export section-animate">
+        <div class="container export-stage">
+            <div class="export-visual tilt-card">
+                <div class="export-photo-wrap">
+                    <img src="Videos and images/food bag.jpg" alt="Global Supply" />
+                    <div class="export-photo-overlay"></div>
+                    <div class="export-scan-line"></div>
                 </div>
-                <h2>Looking for Quality <br>Animal Feed Ingredients?</h2>
-                <div class="inquiry-title-line"></div>
-                <p>Connect with Ajana Impex Pvt. Ltd. for reliable feed ingredients, consistent supply, and export
-                    support.</p>
 
-                <div class="inquiry-btns">
-                    <a href="javascript:void(0)" onclick="openInquiryModal()" class="btn-inquiry-solid">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                <div class="export-badge export-badge-a">
+                    <strong>25+</strong>
+                    <span>Countries</span>
+                </div>
+
+                <div class="export-badge export-badge-b">
+                    <strong>500+</strong>
+                    <span>Clients</span>
+                </div>
+            </div>
+
+            <div class="export-content">
+                <span class="tag">Global Exports</span>
+                <h2>Supplying Quality Feed Ingredients Worldwide</h2>
+                <p>
+                    Ajana Impex Pvt. Ltd. exports premium animal feed ingredients and feed supplements to more than 25
+                    countries with quality-focused process, strong supply chain, and reliable delivery support.
+                </p>
+
+                <div class="export-meta">
+                    <div>
+                        <strong>2012</strong>
+                        <span>Started</span>
+                    </div>
+                    <div>
+                        <strong>24x7</strong>
+                        <span>Response</span>
+                    </div>
+                    <div>
+                        <strong>Bulk</strong>
+                        <span>Dispatch</span>
+                    </div>
+                </div>
+
+                <div class="market-tags">
+                    <span>USA</span>
+                    <span>UK</span>
+                    <span>Australia</span>
+                    <span>Canada</span>
+                    <span>UAE</span>
+                    <span>Russia</span>
+                    <span>Indonesia</span>
+                    <span>China</span>
+                    <span>Malaysia</span>
+                    <span>France</span>
+                    <span>Poland</span>
+                    <span>Spain</span>
+                    <span>Singapore</span>
+                    <span>Germany</span>
+                    <span>Korea</span>
+                    <span>South Africa</span>
+                    <span>Turkey</span>
+                    <span>Egypt</span>
+                    <span>Bangladesh</span>
+                    <span>Vietnam</span>
+                    <span>Taipei</span>
+                    <span>Thailand</span>
+                    <span>Philippines</span>
+                    <span>Belgium</span>
+                    <span>Sri Lanka</span>
+                    <span>Italy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission section-animate">
+        <div class="container mission-stage">
+            <div class="section-title mission-heading">
+                <span class="tag">Direction</span>
+                <h2>Our Vision & Mission</h2>
+                <p>Focused on quality feed ingredients, reliable supply, and long-term customer trust.</p>
+            </div>
+
+            <div class="mission-layout">
+                <article class="mission-panel mission-vision tilt-card">
+                    <div class="mission-panel-top">
+                        <div class="icon large">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <span>01 / Vision</span>
+                    </div>
+
+                    <h3>Our Vision</h3>
+                    <p>
+                        To promote world-class quality animal feed ingredients for farmers, feed manufacturers, and
+                        livestock businesses.
+                    </p>
+
+                    <ul>
+                        <li>Quality-first product philosophy</li>
+                        <li>Global reliability with trusted process</li>
+                        <li>Long-term value for feed businesses</li>
+                    </ul>
+                </article>
+
+                <div class="mission-core-wrap">
+                    <div class="mission-core-line line-a"></div>
+                    <div class="mission-core-line line-b"></div>
+                    <div class="mission-core-line line-c"></div>
+
+                    <div class="mission-core tilt-card">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2v20M2 12h20" />
                         </svg>
-                        Send Inquiry
+                        <strong>Trust Driven</strong>
+                        <span>Quality + Service</span>
+                    </div>
+                </div>
+
+                <article class="mission-panel mission-mission tilt-card">
+                    <div class="mission-panel-top">
+                        <div class="icon large">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg>
+                        </div>
+                        <span>02 / Mission</span>
+                    </div>
+
+                    <h3>Our Mission</h3>
+                    <p>
+                        To deliver reliable and affordable animal feed products while building long-term relationships
+                        through trust and service.
+                    </p>
+
+                    <ul>
+                        <li>Stable supply for domestic and export clients</li>
+                        <li>Practical pricing and responsive support</li>
+                        <li>Consistent quality across every dispatch</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section-animate">
+        <div class="container cta-stage">
+            <div class="cta-visual tilt-card">
+                <div class="cta-visual-card">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2v20M2 12h20" />
+                        <circle cx="12" cy="12" r="9" />
+                    </svg>
+                    <strong>Ajana Partnership Desk</strong>
+                    <p>Fast quote support with practical pricing and dependable dispatch coordination.</p>
+                </div>
+
+                <div class="cta-float cta-float-a">
+                    <strong>24x7</strong>
+                    <span>Response</span>
+                </div>
+
+                <div class="cta-float cta-float-b">
+                    <strong>Bulk</strong>
+                    <span>Export Ready</span>
+                </div>
+            </div>
+
+            <div class="cta-content">
+                <span class="tag">Partnership Desk</span>
+                <h2>Build Your Next Feed Shipment With Confidence</h2>
+                <p>
+                    Share your product requirement and destination market. Our team will provide quality options,
+                    dispatch support, and fast response for domestic and export inquiries.
+                </p>
+
+                <div class="cta-meta">
+                    <div><strong>7</strong><span>Core Products</span></div>
+                    <div><strong>25+</strong><span>Countries Served</span></div>
+                    <div><strong>2012</strong><span>Since</span></div>
+                </div>
+
+                <div class="cta-actions">
+                    <a href="mailto:info@ajanaimpex.com" class="btn cta-btn-primary">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 4L11 13" />
+                            <path d="M22 4L15 20l-4-7-7-4z" />
+                        </svg>
+                        Send Requirement
                     </a>
-                    <a href="tel:+919512509292" class="btn-inquiry-outline">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <a href="tel:+919512509292" class="btn btn-outline cta-btn-secondary">
+                        <svg viewBox="0 0 24 24">
                             <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                            </path>
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.63 2.64a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.44-1.29a2 2 0 0 1 2.11-.45c.85.3 1.74.51 2.64.63A2 2 0 0 1 22 16.92z" />
                         </svg>
-                        +91 95125 09292
+                        Call Team
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Quick Inquiry Modal -->
-    <div id="inquiry-modal" class="inquiry-modal">
-        <div class="modal-overlay" onclick="closeInquiryModal()"></div>
-        <div class="modal-content-wrapper">
-            <button class="modal-close" onclick="closeInquiryModal()">×</button>
-            <div class="form-container-premium">
-                <div class="form-info">
-                    <h3>Request a Quote</h3>
-                    <p>Fill out the form below and our export team will contact you within 24 hours.</p>
-
-                    <div class="contact-details-p">
-                        <div class="detail-item-p">
-                            <span class="icon">📍</span>
-                            <div>
-                                <strong>Office</strong>
-                                <p>Ajana Impex Pvt. Ltd., India</p>
-                            </div>
-                        </div>
-                        <div class="detail-item-p">
-                            <span class="icon">✉️</span>
-                            <div>
-                                <strong>Email</strong>
-                                <p>info@ajanaimpex.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="actual-form-p">
-                    <div class="form-grid-p">
-                        <div class="form-group-p">
-                            <label>Your Name</label>
-                            <input type="text" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group-p">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="john@example.com" required>
-                        </div>
-                        <div class="form-group-p">
-                            <label>Phone Number</label>
-                            <input type="tel" placeholder="+91 00000 00000">
-                        </div>
-                        <div class="form-group-p">
-                            <label>Product Interested In</label>
-                            <select>
-                                <option>Rice DDGS</option>
-                                <option>Corn DDGS</option>
-                                <option>Meat Bone Meal</option>
-                                <option>Fish Meal</option>
-                                <option>Other Feed Ingredient</option>
-                            </select>
-                        </div>
-                        <div class="form-group-p full-width">
-                            <label>Your Message</label>
-                            <textarea placeholder="Tell us about your requirements..."></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-submit-p">Submit Inquiry</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-about">
-                <a href="#home" class="logo footer-logo-container">
-                    <img src="Videos and images/Ajana Impex Logo.png" alt="Ajana Impex Logo">
-                </a>
-                <p>Being one of the leading manufacturers, suppliers, and exporters of Meat Bone Meal, Corn DDGS,
-                    Poultry Meal, Fish Meal, Corn Gluten Meal, Ground Nut DOC, Cotton Seed DOC, Castor DOC, Soya DOC,
-                    Rice Gluten Meal, Feed Rice, Wheat, Rice DDGS, Rapeseed DOC, Sunflower DOC, Guar Korma, and DORB
-                    since 2011, Ajana Impex is known among the trusted names in the animal feed industry.</p>
+        <div class="container footer-grid">
+            <div>
+                <img src="Videos and images/Ajana Impex Logo.png" alt="Ajana Impex Logo" class="footer-logo" />
+                <p>Trusted manufacturer, supplier, and exporter of premium animal feed ingredients.</p>
             </div>
-            <div class="footer-links">
+
+            <div>
                 <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#products">Our Products</a></li>
-                    <li><a href="#export">Global Exports</a></li>
-                </ul>
+                <a href="#about">About</a>
+                <a href="#products">Products</a>
+                <a href="#export">Global Exports</a>
+                <a href="#contact">Contact</a>
             </div>
-            <div class="footer-links">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact">Quick Inquiry</a></li>
-                </ul>
+
+            <div>
+                <h4>Products</h4>
+                <a href="#products">CORN DDGS</a>
+                <a href="#products">RICE DDGS</a>
+                <a href="#products">RICE PROTEIN MEAL</a>
+                <a href="#products">SOYABEAN MEAL</a>
             </div>
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p>Email: info@ajanaimpex.com</p>
-                <p>Call: +91 95125 09292</p>
-                <p>Location: Rajkot, Gujarat, India</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">Office No. 202, OM Complex, Bhaktinagar Station Circle,
-                    Rajkot - 360002</p>
+
+            <div>
+                <h4>Contact</h4>
+                <p>Rajkot, Gujarat, India</p>
+                <p>Bulk and export inquiries welcome.</p>
             </div>
         </div>
+
         <div class="copyright">
-            © Copyright Ajana Impex Pvt. Ltd. All Rights Reserved.
+            &copy; 2026 Ajana Impex Pvt. Ltd. All rights reserved.
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 

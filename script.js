@@ -1,468 +1,1128 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.querySelector(".navbar");
+    const cursorGlow = document.querySelector(".cursor-glow");
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    const quickInquiryBtn = document.querySelector(".nav-btn");
+
+    const onScroll = () => {
+        navbar?.classList.toggle("scrolled", window.scrollY > 40);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (quickInquiryBtn) {
+        quickInquiryBtn.addEventListener("click", () => {
+            const target = document.querySelector(quickInquiryBtn.dataset.target || "#contact");
+            target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    }
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            menuBtn.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                menuBtn.classList.remove("active");
+            });
+        });
+    }
+
+    const hasGSAP = Boolean(window.gsap && window.ScrollTrigger);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (cursorGlow) {
+        if (hasGSAP && !prefersReducedMotion) {
+            const moveX = gsap.quickTo(cursorGlow, "left", { duration: 0.35, ease: "power3" });
+            const moveY = gsap.quickTo(cursorGlow, "top", { duration: 0.35, ease: "power3" });
+
+            window.addEventListener("mousemove", (e) => {
+                moveX(e.clientX);
+                moveY(e.clientY);
+            });
+        } else {
+            window.addEventListener("mousemove", (e) => {
+                cursorGlow.style.left = `${e.clientX}px`;
+                cursorGlow.style.top = `${e.clientY}px`;
+            });
+        }
+    }
+
+    if (!hasGSAP || prefersReducedMotion) {
+        document.querySelectorAll("[data-count]").forEach((counter) => {
+            counter.textContent = `${counter.dataset.count}+`;
+        });
+        return;
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from("body", {
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out"
-    });
-
-    const swiperElement = document.querySelector(".hero-carousel");
-
-    if (swiperElement && typeof Swiper !== "undefined") {
-        const swiper = new Swiper(".hero-carousel", {
-            loop: true,
-            speed: 1000,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            },
-            effect: "fade",
-            fadeEffect: {
-                crossFade: true
+    const pageProgress = document.querySelector(".page-progress");
+    if (pageProgress) {
+        gsap.to(pageProgress, {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+                trigger: document.body,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.35
             }
         });
+    }
 
-        function animateHeroText() {
-            gsap.fromTo(
-                ".hero-text > *",
-                { y: 30, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.18,
-                    ease: "power3.out"
+    const heroVideo = document.querySelector(".hero-video");
+    const heroSection = document.querySelector(".hero");
+    if (heroVideo && heroSection) {
+        gsap.to(heroVideo, {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+                trigger: heroSection,
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.1
+            }
+        });
+    }
+
+    const revealSettings = [
+        {
+            selector: ".reveal-up",
+            from: { y: 60, opacity: 0 },
+            to: { y: 0, opacity: 1 }
+        },
+        {
+            selector: ".reveal-left",
+            from: { x: -85, opacity: 0 },
+            to: { x: 0, opacity: 1 }
+        },
+        {
+            selector: ".reveal-right",
+            from: { x: 85, opacity: 0 },
+            to: { x: 0, opacity: 1 }
+        },
+        {
+            selector: ".reveal-scale",
+            from: { scale: 0.82, opacity: 0, rotateX: 12 },
+            to: { scale: 1, opacity: 1, rotateX: 0 }
+        }
+    ];
+
+    revealSettings.forEach((item) => {
+        gsap.utils.toArray(item.selector).forEach((element, index) => {
+            gsap.fromTo(element, item.from, {
+                ...item.to,
+                duration: 0.95,
+                delay: (index % 5) * 0.06,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 87%",
+                    toggleActions: "play none none reverse"
                 }
-            );
-        }
-
-        animateHeroText();
-        swiper.on("slideChangeTransitionStart", animateHeroText);
-    }
-
-    const video = document.querySelector(".hero-video");
-    if (video) {
-        video.play().catch(() => {
-            console.log("Autoplay prevented.");
-        });
-    }
-
-    /* Why Partner Section */
-    gsap.fromTo(
-        ".strength-header > *",
-        { y: 35, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".strengths-v3",
-                start: "top 78%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".main-emblem-v4",
-        { scale: 0.65, rotateY: 30, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".strengths-v3",
-                start: "top 72%"
-            },
-            scale: 1,
-            rotateY: 0,
-            opacity: 1,
-            duration: 1.1,
-            ease: "back.out(1.6)"
-        }
-    );
-
-    gsap.fromTo(
-        ".left-panel .strength-card-3d",
-        { x: -80, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".strengths-3d-layout",
-                start: "top 80%"
-            },
-            x: 0,
-            opacity: 1,
-            duration: 0.9,
-            stagger: 0.15,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".right-panel .strength-card-3d",
-        { x: 80, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".strengths-3d-layout",
-                start: "top 80%"
-            },
-            x: 0,
-            opacity: 1,
-            duration: 0.9,
-            stagger: 0.15,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".strengths-bottom-strip",
-        { y: 35, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".strengths-bottom-strip",
-                start: "top 90%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out"
-        }
-    );
-
-    /* About Section */
-    gsap.fromTo(
-        ".about-intro > *, .about-bullet-points, .about-description, .about-feature-grid, .btn-explore-v2",
-        { y: 35, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".about-v2",
-                start: "top 78%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            stagger: 0.12,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".main-image-wrapper",
-        { x: 90, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".about-visual-side",
-                start: "top 82%"
-            },
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".sub-image-wrapper",
-        { y: 70, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".about-visual-side",
-                start: "top 82%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            delay: 0.2,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".floating-badge",
-        { scale: 0.5, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".about-visual-side",
-                start: "top 82%"
-            },
-            scale: 1,
-            opacity: 1,
-            duration: 0.9,
-            delay: 0.35,
-            ease: "back.out(1.8)"
-        }
-    );
-
-    /* Products Section */
-    gsap.fromTo(
-        ".products-header > *",
-        { y: 35, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".products-premium",
-                start: "top 78%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            stagger: 0.13,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".product-card-premium",
-        { y: 55, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".products-grid-premium",
-                start: "top 82%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.85,
-            stagger: 0.1,
-            ease: "power3.out"
-        }
-    );
-
-    gsap.fromTo(
-        ".products-bottom-note",
-        { y: 25, opacity: 0 },
-        {
-            scrollTrigger: {
-                trigger: ".products-bottom-note",
-                start: "top 92%"
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: "power3.out"
-        }
-    );
-
-    /* 3D Tilt */
-    const tiltElements = document.querySelectorAll(
-        ".strength-card-3d, .product-card-premium, .feature-card-v2"
-    );
-
-    tiltElements.forEach((el) => {
-        el.addEventListener("mousemove", (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const rotateX = ((y - rect.height / 2) / rect.height) * -8;
-            const rotateY = ((x - rect.width / 2) / rect.width) * 8;
-
-            gsap.to(el, {
-                rotateX,
-                rotateY,
-                transformPerspective: 900,
-                transformOrigin: "center",
-                duration: 0.35,
-                ease: "power2.out"
-            });
-        });
-
-        el.addEventListener("mouseleave", () => {
-            gsap.to(el, {
-                rotateX: 0,
-                rotateY: 0,
-                duration: 0.35,
-                ease: "power2.out"
             });
         });
     });
 
-    /* Mobile Menu Logic */
-    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-    const navLinks = document.querySelector(".nav-links");
-    const navLinksItems = document.querySelectorAll(".nav-links a");
-
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener("click", () => {
-            mobileMenuBtn.classList.toggle("active");
-            navLinks.classList.toggle("active");
-            document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
-        });
-
-        navLinksItems.forEach(link => {
-            link.addEventListener("click", () => {
-                mobileMenuBtn.classList.remove("active");
-                navLinks.classList.remove("active");
-                document.body.style.overflow = "";
-            });
-        });
-    }
-});
-
-
-/* Modal Logic */
-function openInquiryModal() {
-    const modal = document.getElementById('inquiry-modal');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeInquiryModal() {
-    const modal = document.getElementById('inquiry-modal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Close modal on Esc key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeInquiryModal();
-});
-
-
-/* Testimonials Slider */
-const testimonialsSlider = new Swiper('.testimonials-slider', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-        delay: 6000,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: '.t-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.t-btn-next',
-        prevEl: '.t-btn-prev',
-    },
-    breakpoints: {
-        768: { slidesPerView: 2 },
-        1100: { slidesPerView: 3 }
-    }
-});
-
-
-/* Advanced Scroll Animations */
-gsap.utils.toArray('h2').forEach(heading => {
-    gsap.from(heading, {
-        scrollTrigger: {
-            trigger: heading,
-            start: 'top 90%',
-        },
-        duration: 1.2,
-        y: 50,
-        opacity: 0,
-        ease: 'power4.out',
-        skewY: 3
-    });
-});
-
-/* Parallax for Background Elements */
-gsap.to('.products-bg-leaf, .v-m-bg-leaf-top', {
-    scrollTrigger: {
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1
-    },
-    y: -100,
-    rotation: 10,
-    ease: 'none'
-});
-
-/* Smooth Reveal for Cards */
-gsap.utils.toArray('.product-card-premium, .testimonial-card, .v-m-card-premium').forEach((card, i) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 92%',
-        },
-        duration: 0.8,
-        opacity: 0,
-        y: 40,
-        delay: i % 3 * 0.1,
-        ease: 'power2.out'
-    });
-});
-
-/* =========================================================
-   EXTRA BUTTON MAGNET + IMAGE HOVER ANIMATION
-   Paste at bottom of script.js
-   Does not change UI/text/features
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-    const animatedButtons = document.querySelectorAll(
-        ".btn-primary, .btn-hero-outline, .btn-explore-v2, .btn-inquiry, .btn-inquiry-solid, .btn-submit-p"
-    );
-
-    animatedButtons.forEach((btn) => {
-        btn.addEventListener("mousemove", (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            btn.style.setProperty("--mouse-x", `${x}px`);
-            btn.style.setProperty("--mouse-y", `${y}px`);
-
-            const moveX = (x - rect.width / 2) * 0.12;
-            const moveY = (y - rect.height / 2) * 0.18;
-
-            if (typeof gsap !== "undefined") {
-                gsap.to(btn, {
-                    x: moveX,
-                    y: moveY - 4,
-                    duration: 0.35,
-                    ease: "power3.out"
-                });
+    gsap.utils.toArray(".section-animate").forEach((section) => {
+        gsap.fromTo(section, {
+            backgroundPosition: "50% 0%"
+        }, {
+            backgroundPosition: "50% 100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
             }
         });
+    });
 
-        btn.addEventListener("mouseleave", () => {
-            if (typeof gsap !== "undefined") {
-                gsap.to(btn, {
+    const whySection = document.querySelector("#why");
+    const whyHub = document.querySelector(".why-hub-card");
+    const whyLayout = document.querySelector(".why-layout-3d");
+
+    if (whySection && whyHub && whyLayout) {
+        const mm = gsap.matchMedia();
+
+        mm.add("(min-width: 901px)", () => {
+            const whyTimeline = gsap.timeline({
+                defaults: { ease: "power3.out" },
+                scrollTrigger: {
+                    trigger: whySection,
+                    start: "top 68%",
+                    toggleActions: "play none none none",
+                    once: true
+                }
+            });
+
+            whyTimeline
+                .fromTo(".why-heading", {
+                    opacity: 0,
+                    y: 45,
+                    rotationX: -8,
+                    transformPerspective: 1100
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    rotationX: 0,
+                    duration: 0.7
+                }, 0)
+                .fromTo(".why-left-1", {
+                    x: -260,
+                    y: -120,
+                    z: -220,
+                    rotationY: 34,
+                    rotationX: -18,
+                    opacity: 0
+                }, {
                     x: 0,
                     y: 0,
-                    duration: 0.45,
-                    ease: "elastic.out(1, 0.45)"
+                    z: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    opacity: 1,
+                    duration: 1.05
+                }, 0.06)
+                .fromTo(".why-left-2", {
+                    x: -260,
+                    y: 130,
+                    z: -220,
+                    rotationY: 30,
+                    rotationX: 18,
+                    opacity: 0
+                }, {
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    opacity: 1,
+                    duration: 1.05
+                }, 0.14)
+                .fromTo(".why-right-1", {
+                    x: 260,
+                    y: -120,
+                    z: -220,
+                    rotationY: -34,
+                    rotationX: -18,
+                    opacity: 0
+                }, {
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    opacity: 1,
+                    duration: 1.05
+                }, 0.06)
+                .fromTo(".why-right-2", {
+                    x: 260,
+                    y: 130,
+                    z: -220,
+                    rotationY: -30,
+                    rotationX: 18,
+                    opacity: 0
+                }, {
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    rotationY: 0,
+                    rotationX: 0,
+                    opacity: 1,
+                    duration: 1.05
+                }, 0.14)
+                .fromTo(".why-hub-card", {
+                    scale: 0.5,
+                    rotationY: 220,
+                    rotationX: -25,
+                    z: -280,
+                    opacity: 0
+                }, {
+                    scale: 1,
+                    rotationY: 0,
+                    rotationX: 0,
+                    z: 40,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "back.out(1.35)"
+                }, 0.02)
+                .fromTo(".hub-title span", {
+                    y: 24,
+                    opacity: 0
+                }, {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.08,
+                    duration: 0.52
+                }, 0.42)
+                .fromTo(".why-stats div", {
+                    y: 50,
+                    rotationX: -20,
+                    z: -120,
+                    opacity: 0
+                }, {
+                    y: 0,
+                    rotationX: 0,
+                    z: 0,
+                    opacity: 1,
+                    stagger: 0.08,
+                    duration: 0.7
+                }, 0.52)
+                .to(".ring-one", {
+                    rotate: 360,
+                    duration: 1.15,
+                    ease: "none"
+                }, 0)
+                .to(".ring-two", {
+                    rotate: -420,
+                    duration: 1.15,
+                    ease: "none"
+                }, 0);
+
+            gsap.to(".hub-glow", {
+                scale: 1.14,
+                opacity: 0.92,
+                duration: 1.4,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+
+            const hasFinePointer = window.matchMedia("(pointer:fine)").matches;
+            if (hasFinePointer) {
+                whyLayout.addEventListener("mousemove", (e) => {
+                    const rect = whyLayout.getBoundingClientRect();
+                    const rx = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
+                    const ry = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+
+                    gsap.to(".why-col-left", {
+                        rotateX: rx,
+                        rotateY: ry - 8,
+                        duration: 0.45,
+                        ease: "power2.out"
+                    });
+
+                    gsap.to(".why-col-right", {
+                        rotateX: rx,
+                        rotateY: ry + 8,
+                        duration: 0.45,
+                        ease: "power2.out"
+                    });
+
+                    gsap.to(".why-hub-wrap", {
+                        rotateX: rx * 0.7,
+                        rotateY: ry * 0.7,
+                        duration: 0.45,
+                        ease: "power2.out"
+                    });
+                });
+
+                whyLayout.addEventListener("mouseleave", () => {
+                    gsap.to([".why-col-left", ".why-col-right", ".why-hub-wrap"], {
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.55,
+                        ease: "power2.out"
+                    });
+                });
+            }
+        });
+
+        mm.add("(max-width: 900px)", () => {
+            gsap.fromTo(".why-card-3d", {
+                y: 60,
+                opacity: 0,
+                rotateX: -16,
+                rotateY: 12
+            }, {
+                y: 0,
+                opacity: 1,
+                rotateX: 0,
+                rotateY: 0,
+                stagger: 0.12,
+                duration: 0.9,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: "#why",
+                    start: "top 72%"
+                }
+            });
+
+            gsap.fromTo(".why-hub-card", {
+                scale: 0.75,
+                opacity: 0
+            }, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.9,
+                ease: "back.out(1.4)",
+                scrollTrigger: {
+                    trigger: ".why-hub-wrap",
+                    start: "top 78%"
+                }
+            });
+        });
+    }
+
+    const aboutPremium = document.querySelector(".about-premium");
+    if (aboutPremium) {
+        gsap.set(".about-usp-card, .about-frame, .about-floating, .about-quality-seal", {
+            transformPerspective: 1200
+        });
+
+        const aboutTimeline = gsap.timeline({
+            defaults: { ease: "power3.out" },
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 68%",
+                toggleActions: "play none none none",
+                once: true
+            }
+        });
+
+        aboutTimeline
+            .fromTo(".about-kicker", {
+                y: 30,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                duration: 0.5
+            }, 0)
+            .fromTo(".about-title", {
+                y: 42,
+                opacity: 0,
+                rotationX: -12
+            }, {
+                y: 0,
+                opacity: 1,
+                rotationX: 0,
+                duration: 0.75
+            }, 0.05)
+            .fromTo(".about-lead", {
+                x: -55,
+                opacity: 0
+            }, {
+                x: 0,
+                opacity: 1,
+                duration: 0.62
+            }, 0.16)
+            .fromTo(".about-body", {
+                x: -55,
+                opacity: 0
+            }, {
+                x: 0,
+                opacity: 1,
+                duration: 0.62
+            }, 0.24)
+            .fromTo(".about-usp-a", {
+                x: -130,
+                y: -40,
+                z: -180,
+                rotationY: 28,
+                rotationX: -12,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                z: 0,
+                rotationY: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 0.95
+            }, 0.2)
+            .fromTo(".about-usp-b", {
+                y: 100,
+                z: -180,
+                rotationX: -28,
+                opacity: 0
+            }, {
+                y: 0,
+                z: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 0.95
+            }, 0.25)
+            .fromTo(".about-usp-c", {
+                x: 130,
+                y: 40,
+                z: -180,
+                rotationY: -28,
+                rotationX: 12,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                z: 0,
+                rotationY: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 0.95
+            }, 0.2)
+            .fromTo(".about-frame-main", {
+                x: 140,
+                y: -90,
+                z: -280,
+                rotationY: -22,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                z: 0,
+                rotationY: 0,
+                opacity: 1,
+                duration: 1.08
+            }, 0.18)
+            .fromTo(".about-frame-side", {
+                x: 120,
+                y: 110,
+                z: -260,
+                rotationY: -18,
+                rotationX: 12,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                z: 0,
+                rotationY: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 1.05
+            }, 0.25)
+            .fromTo(".about-floating-top", {
+                x: -90,
+                y: -45,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                opacity: 1,
+                duration: 0.68
+            }, 0.45)
+            .fromTo(".about-floating-bottom", {
+                x: -90,
+                y: 48,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                opacity: 1,
+                duration: 0.68
+            }, 0.52)
+            .fromTo(".about-quality-seal", {
+                scale: 0.62,
+                rotation: -28,
+                opacity: 0
+            }, {
+                scale: 1,
+                rotation: 0,
+                opacity: 1,
+                duration: 0.84,
+                ease: "back.out(1.3)"
+            }, 0.58);
+
+        gsap.to(".about-floating-top", {
+            y: -10,
+            duration: 1.9,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut"
+        });
+
+        gsap.to(".about-floating-bottom", {
+            y: 10,
+            duration: 2.1,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut"
+        });
+    }
+
+    const productSwitcher = document.querySelector(".product-switcher");
+    if (productSwitcher) {
+        const steps = Array.from(document.querySelectorAll(".product-step"));
+        const productMainImage = document.getElementById("productMainImage");
+        const productImageChip = document.getElementById("productImageChip");
+        const productCode = document.getElementById("productCode");
+        const productPill = document.getElementById("productPill");
+        const productTitle = document.getElementById("productTitle");
+        const productDescription = document.getElementById("productDescription");
+        const productPoints = document.getElementById("productPoints");
+        const productTags = document.getElementById("productTags");
+
+        const products = [
+            {
+                name: "CORN DDGS",
+                image: "Videos and images/corn_ddgs.jpg",
+                chip: "Premium Feed Grade",
+                pill: "Cattle Feed Ingredient",
+                description: "Protein-rich and digestible feed ingredient suitable for cattle ration balancing and performance-based feed formulations.",
+                points: [
+                    "High consistency for controlled feed formulation.",
+                    "Supports livestock nutrition and weight gain plans.",
+                    "Available for domestic and export bulk supply."
+                ],
+                tags: ["Protein Rich", "Bulk Supply", "Export Ready"]
+            },
+            {
+                name: "RICE DDGS",
+                image: "Videos and images/rice_ddgs.jpg",
+                chip: "Consistent Quality",
+                pill: "Cattle Feed Ingredient",
+                description: "Reliable rice-based distillers grain ingredient used for cattle feed blends and cost-effective ration planning.",
+                points: [
+                    "Balanced nutritional support for cattle feed.",
+                    "Suitable for routine feed blending operations.",
+                    "Steady lot quality for repeat procurement."
+                ],
+                tags: ["Digestible", "Stable Supply", "Feed Blend"]
+            },
+            {
+                name: "RICE PROTEIN MEAL",
+                image: "Videos and images/food bag.jpg",
+                chip: "High Protein Source",
+                pill: "Protein Feed Material",
+                description: "Concentrated protein feed material used to improve nutritional value in compound feed formulations.",
+                points: [
+                    "Improves overall protein profile in feed.",
+                    "Preferred for mixed livestock feed production.",
+                    "Handled with quality-focused packing support."
+                ],
+                tags: ["Protein", "Nutrient Boost", "Quality Packed"]
+            },
+            {
+                name: "DEOILED CORN DDGS",
+                image: "Videos and images/food bag.jpg",
+                chip: "Processed Ingredient",
+                pill: "Energy and Protein Feed",
+                description: "Processed corn DDGS variant with controlled oil profile for structured feed balancing requirements.",
+                points: [
+                    "Suitable for performance-focused feed plans.",
+                    "Maintains dependable batch-to-batch consistency.",
+                    "Designed for commercial feed manufacturing use."
+                ],
+                tags: ["Processed", "Feed Formula", "Commercial Use"]
+            },
+            {
+                name: "CORN GLUTEN MEAL",
+                image: "Videos and images/corn_gluten.jpg",
+                chip: "Plant Protein Grade",
+                pill: "Plant Protein Ingredient",
+                description: "Corn-based plant protein ingredient widely used in poultry and livestock formulations requiring concentrated protein.",
+                points: [
+                    "Strong protein profile for feed applications.",
+                    "Supports poultry and livestock feed strategies.",
+                    "Reliable sourcing with dispatch coordination."
+                ],
+                tags: ["Plant Protein", "Poultry Use", "Reliable Sourcing"]
+            },
+            {
+                name: "CORN FEED MEAL",
+                image: "Videos and images/food bag.jpg",
+                chip: "Energy Feed Input",
+                pill: "Feed Meal Ingredient",
+                description: "Versatile corn feed meal for feed blending, supporting energy requirements in large-scale livestock feed programs.",
+                points: [
+                    "Works well in multiple feed blend ratios.",
+                    "Useful for high-volume feed operations.",
+                    "Supported by practical logistics handling."
+                ],
+                tags: ["Energy Input", "Versatile", "High Volume"]
+            },
+            {
+                name: "SOYABEAN MEAL",
+                image: "Videos and images/food bag.jpg",
+                chip: "Trusted Protein Meal",
+                pill: "High-Protein Feed Ingredient",
+                description: "Soyabean meal used as a premium protein ingredient in feed formulas for livestock and poultry applications.",
+                points: [
+                    "Preferred protein source in feed formulas.",
+                    "Supports growth-oriented nutrition planning.",
+                    "Available with dependable bulk availability."
+                ],
+                tags: ["Premium Protein", "Growth Support", "Bulk Ready"]
+            }
+        ];
+
+        const renderProduct = (index, animate = true) => {
+            const item = products[index];
+            if (!item) return;
+
+            const changeContent = () => {
+                productMainImage.src = item.image;
+                productMainImage.alt = item.name;
+                productImageChip.textContent = item.chip;
+                productCode.textContent = `${String(index + 1).padStart(2, "0")} / 07`;
+                productPill.textContent = item.pill;
+                productTitle.textContent = item.name;
+                productDescription.textContent = item.description;
+
+                productPoints.innerHTML = item.points.map((point) => `<li>${point}</li>`).join("");
+                productTags.innerHTML = item.tags.map((tag) => `<span>${tag}</span>`).join("");
+            };
+
+            if (animate && window.gsap) {
+                gsap.to([".product-image-panel", ".product-content-panel"], {
+                    opacity: 0,
+                    y: 16,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        changeContent();
+                        gsap.fromTo([".product-image-panel", ".product-content-panel"], {
+                            opacity: 0,
+                            y: 18
+                        }, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.38,
+                            ease: "power3.out"
+                        });
+                    }
                 });
             } else {
-                btn.style.transform = "";
+                changeContent();
+            }
+        };
+
+        steps.forEach((step, idx) => {
+            step.addEventListener("click", () => {
+                steps.forEach((btn) => btn.classList.remove("is-active"));
+                step.classList.add("is-active");
+                renderProduct(idx, true);
+            });
+        });
+
+        renderProduct(0, false);
+
+        if (window.gsap) {
+            gsap.timeline({
+                defaults: { ease: "power3.out" },
+                scrollTrigger: {
+                    trigger: "#products",
+                    start: "top 70%",
+                    toggleActions: "play none none none",
+                    once: true
+                }
+            })
+                .fromTo(".product-heading", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0)
+                .fromTo(".product-nav .product-step", { x: -24, opacity: 0 }, { x: 0, opacity: 1, stagger: 0.06, duration: 0.45 }, 0.1)
+                .fromTo(".product-view", { x: 64, opacity: 0, rotationY: -10 }, { x: 0, opacity: 1, rotationY: 0, duration: 0.8 }, 0.2);
+        }
+    }
+
+    const exportStage = document.querySelector(".export-stage");
+    if (exportStage) {
+        const exportTimeline = gsap.timeline({
+            defaults: { ease: "power3.out" },
+            scrollTrigger: {
+                trigger: "#export",
+                start: "top 68%",
+                toggleActions: "play none none none",
+                once: true
             }
         });
-    });
 
-    const animatedImages = document.querySelectorAll(
-        ".main-image-wrapper, .sub-image-wrapper, .product-card-premium, .export-visual"
-    );
+        exportTimeline
+            .fromTo(".export-visual", {
+                x: -80,
+                rotationY: 10,
+                opacity: 0
+            }, {
+                x: 0,
+                rotationY: 0,
+                opacity: 1,
+                duration: 0.9
+            }, 0)
+            .fromTo(".export-content .tag, .export-content h2, .export-content p", {
+                y: 24,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.08,
+                duration: 0.58
+            }, 0.12)
+            .fromTo(".export-meta div", {
+                y: 24,
+                opacity: 0,
+                rotationX: -16
+            }, {
+                y: 0,
+                opacity: 1,
+                rotationX: 0,
+                stagger: 0.08,
+                duration: 0.58
+            }, 0.3)
+            .fromTo(".market-tags span", {
+                y: 20,
+                opacity: 0,
+                scale: 0.92
+            }, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: {
+                    each: 0.03,
+                    from: "random"
+                },
+                duration: 0.45
+            }, 0.38)
+            .fromTo(".export-badge", {
+                y: 20,
+                opacity: 0,
+                scale: 0.9
+            }, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.1,
+                duration: 0.5
+            }, 0.35);
 
-    animatedImages.forEach((item) => {
-        item.addEventListener("mouseenter", () => {
-            if (typeof gsap !== "undefined") {
-                gsap.to(item, {
-                    scale: 1.015,
+        gsap.to(".export-scan-line", {
+            top: "82%",
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        gsap.to(".export-badge-a", {
+            y: -8,
+            duration: 1.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        gsap.to(".export-badge-b", {
+            y: 8,
+            duration: 2.1,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    const missionStage = document.querySelector(".mission-stage");
+    if (missionStage) {
+        gsap.set([".mission-vision", ".mission-mission", ".mission-core", ".mission-core-line"], {
+            transformPerspective: 1300
+        });
+
+        const missionTimeline = gsap.timeline({
+            defaults: { ease: "power4.out" },
+            scrollTrigger: {
+                trigger: ".mission",
+                start: "top 72%",
+                toggleActions: "play none none none",
+                once: true
+            }
+        });
+
+        missionTimeline
+            .fromTo(".mission-heading", {
+                y: 34,
+                opacity: 0,
+                rotationX: -8,
+                filter: "blur(8px)"
+            }, {
+                y: 0,
+                opacity: 1,
+                rotationX: 0,
+                filter: "blur(0px)",
+                duration: 0.8
+            }, 0)
+            .fromTo(".mission-vision", {
+                x: -150,
+                y: -70,
+                z: -180,
+                rotationY: 18,
+                rotationX: -10,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                z: 0,
+                rotationY: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 1.05
+            }, 0.12)
+            .fromTo(".mission-mission", {
+                x: 150,
+                y: 70,
+                z: -180,
+                rotationY: -18,
+                rotationX: 10,
+                opacity: 0
+            }, {
+                x: 0,
+                y: 0,
+                z: 0,
+                rotationY: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 1.05
+            }, 0.18)
+            .fromTo(".mission-core", {
+                scale: 0.7,
+                rotationY: 120,
+                z: -160,
+                opacity: 0
+            }, {
+                scale: 1,
+                rotationY: 0,
+                z: 0,
+                opacity: 1,
+                duration: 1.15,
+                ease: "back.out(1.3)"
+            }, 0.25)
+            .fromTo(".mission-core-line", {
+                scale: 0.6,
+                opacity: 0
+            }, {
+                scale: 1,
+                opacity: 1,
+                stagger: 0.11,
+                duration: 0.72
+            }, 0.3)
+            .fromTo(".mission-panel-top span", {
+                y: 14,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.08,
+                duration: 0.5
+            }, 0.44)
+            .fromTo(".mission-panel ul li", {
+                x: -14,
+                opacity: 0
+            }, {
+                x: 0,
+                opacity: 1,
+                stagger: 0.06,
+                duration: 0.45
+            }, 0.5);
+
+        gsap.to(".line-a", {
+            rotate: 360,
+            duration: 28,
+            ease: "none",
+            repeat: -1
+        });
+
+        gsap.to(".line-b", {
+            rotate: -360,
+            duration: 22,
+            ease: "none",
+            repeat: -1
+        });
+
+        gsap.to(".line-c", {
+            rotate: 360,
+            duration: 16,
+            ease: "none",
+            repeat: -1
+        });
+
+        const missionLayout = document.querySelector(".mission-layout");
+        const hasFinePointerMission = window.matchMedia("(pointer:fine)").matches;
+        if (missionLayout && hasFinePointerMission) {
+            missionLayout.addEventListener("mousemove", (e) => {
+                const rect = missionLayout.getBoundingClientRect();
+                const relX = (e.clientX - rect.left) / rect.width - 0.5;
+                const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+                gsap.to(".mission-vision", {
+                    rotateY: relX * 10,
+                    rotateX: relY * -8,
+                    z: 30,
                     duration: 0.45,
                     ease: "power3.out"
                 });
+
+                gsap.to(".mission-mission", {
+                    rotateY: relX * 10,
+                    rotateX: relY * -8,
+                    z: 30,
+                    duration: 0.45,
+                    ease: "power3.out"
+                });
+
+                gsap.to(".mission-core", {
+                    rotateY: relX * 14,
+                    rotateX: relY * -12,
+                    z: 44,
+                    duration: 0.45,
+                    ease: "power3.out"
+                });
+            });
+
+            missionLayout.addEventListener("mouseleave", () => {
+                gsap.to([".mission-vision", ".mission-mission"], {
+                    rotateY: 0,
+                    rotateX: 0,
+                    z: 0,
+                    duration: 0.55,
+                    ease: "power3.out"
+                });
+
+                gsap.to(".mission-core", {
+                    rotateY: 0,
+                    rotateX: 0,
+                    z: 0,
+                    duration: 0.55,
+                    ease: "power3.out"
+                });
+            });
+        }
+    }
+
+    const ctaStage = document.querySelector(".cta-stage");
+    if (ctaStage) {
+        const ctaTimeline = gsap.timeline({
+            defaults: { ease: "power4.out" },
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 72%",
+                toggleActions: "play none none none",
+                once: true
             }
         });
 
-        item.addEventListener("mouseleave", () => {
-            if (typeof gsap !== "undefined") {
-                gsap.to(item, {
-                    scale: 1,
-                    rotateX: 0,
-                    rotateY: 0,
-                    duration: 0.5,
-                    ease: "power3.out"
-                });
+        ctaTimeline
+            .fromTo(".cta-visual", {
+                x: -70,
+                opacity: 0,
+                rotationY: 10
+            }, {
+                x: 0,
+                opacity: 1,
+                rotationY: 0,
+                duration: 0.95
+            }, 0)
+            .fromTo(".cta-content .tag, .cta-content h2, .cta-content p", {
+                y: 22,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.08,
+                duration: 0.55
+            }, 0.12)
+            .fromTo(".cta-meta div", {
+                y: 20,
+                opacity: 0,
+                rotationX: -16
+            }, {
+                y: 0,
+                opacity: 1,
+                rotationX: 0,
+                stagger: 0.08,
+                duration: 0.5
+            }, 0.28)
+            .fromTo(".cta-actions .btn", {
+                y: 18,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.1,
+                duration: 0.55
+            }, 0.38)
+            .fromTo(".cta-float", {
+                scale: 0.8,
+                opacity: 0
+            }, {
+                scale: 1,
+                opacity: 1,
+                stagger: 0.1,
+                duration: 0.45
+            }, 0.3);
+    }
+
+    document.querySelectorAll("[data-count]").forEach((counter) => {
+        const target = Number(counter.dataset.count || 0);
+        const countObj = { value: 0 };
+
+        gsap.to(countObj, {
+            value: target,
+            duration: 1.9,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: counter,
+                start: "top 90%",
+                once: true
+            },
+            onUpdate: () => {
+                counter.textContent = `${Math.round(countObj.value)}+`;
             }
         });
     });
+
+    document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("mousemove", (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            gsap.to(button, {
+                x: x * 0.14,
+                y: y * 0.2,
+                duration: 0.34,
+                ease: "power3.out"
+            });
+        });
+
+        button.addEventListener("mouseleave", () => {
+            gsap.to(button, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: "elastic.out(1, 0.42)"
+            });
+        });
+    });
+
+    const hasFinePointer = window.matchMedia("(pointer:fine)").matches;
+    if (hasFinePointer) {
+        document.querySelectorAll(".tilt-card").forEach((card) => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const rotateX = ((y - rect.height / 2) / rect.height) * -8;
+                const rotateY = ((x - rect.width / 2) / rect.width) * 8;
+
+                gsap.to(card, {
+                    rotateX,
+                    rotateY,
+                    transformPerspective: 950,
+                    transformOrigin: "center",
+                    duration: 0.35,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener("mouseleave", () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.45,
+                    ease: "power3.out"
+                });
+            });
+        });
+    }
 });
