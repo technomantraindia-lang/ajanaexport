@@ -4441,15 +4441,19 @@ footer a:hover {
 
 
 
-/* Portfolio Title - One Line Fix */
+/* Portfolio Title - Center & Scale Fix */
 .portfolio-title {
-    white-space: nowrap;
-    max-width: none !important;
+    font-size: clamp(2rem, 4.5vw, 3.2rem) !important;
+    text-align: center;
+    width: 100%;
+    max-width: 1200px !important;
+    margin: 0 auto 30px !important;
+    display: block;
 }
 
 @media (max-width: 768px) {
     .portfolio-title {
+        font-size: 2.2rem !important;
         white-space: normal;
-        font-size: 2rem !important;
     }
 }
