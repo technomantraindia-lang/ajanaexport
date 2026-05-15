@@ -4457,3 +4457,26 @@ footer a:hover {
         white-space: normal;
     }
 }
+
+/* Production Process Section */
+.production-process {
+    background: #fdfbf7;
+    padding: 100px 0;
+}
+
+.process-video-wrap {
+    max-width: 1000px;
+    margin: 40px auto 0;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(12, 53, 21, 0.15);
+    border: 8px solid #fff;
+    position: relative;
+}
+
+.process-video {
+    width: 100%;
+    display: block;
+    filter: contrast(1.05);
+}
+
