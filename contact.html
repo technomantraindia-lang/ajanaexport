@@ -2,67 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | Coming Soon - Ajana Impex Pvt. Ltd.</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Ajana Impex - Global Export Solutions</title>
+    <link rel="stylesheet" href="style.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet" />
-
-    <link rel="stylesheet" href="style.css" />
-    <style>
-        .coming-soon-hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .coming-soon-content {
-            z-index: 2;
-            padding: 2rem;
-        }
-
-        .coming-soon-content h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .coming-soon-content p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.6;
-        }
-
-        .coming-soon-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .coming-soon-bg video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;900&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -72,21 +18,130 @@
     <header id="main-header"></header>
 
     <main>
-        <section class="coming-soon-hero">
-            <div class="coming-soon-bg">
-                <video autoplay muted loop playsinline>
-                    <source src="Videos and images/ajana video.mp4" type="video/mp4" />
-                </video>
+        <!-- Contact Hero -->
+        <section class="contact-hero-tall">
+            <div class="hero-bg-img">
+                <img src="Videos and images/contact_hero.png" alt="Contact Ajana Impex">
             </div>
-
-            <div class="container coming-soon-content">
-                <span class="tag reveal-up">Coming Soon</span>
-                <h1 class="reveal-up">Contact Us</h1>
-                <p class="reveal-up">Our interactive inquiry system and contact modules are being integrated to serve
-                    you better. We'll be ready to connect very soon.</p>
-                <div class="reveal-up">
-                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <div class="hc-wrap reveal-up">
+                    <span class="ph-tag">Get In Touch</span>
+                    <h1>Connect With <span>Us</span></h1>
+                    <p>Partner with India's leading exporter of premium agro-ingredients. Our global logistics desk is
+                        ready to assist your supply chain needs.</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-main section-animate">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Left: Contact Info -->
+                    <div class="contact-info-wrap">
+                        <div class="info-card reveal-up">
+                            <div class="ic-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="ic-text">
+                                <h3>Corporate Office</h3>
+                                <p>Office No:202, OM Complex, Rajkot, India</p>
+                            </div>
+                        </div>
+                        <div class="info-card reveal-up" style="transition-delay: 100ms;">
+                            <div class="ic-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div class="ic-text">
+                                <h3> Email</h3>
+                                <p>info@ajanaimpex.com</p>
+                            </div>
+                        </div>
+                        <div class="info-card reveal-up" style="transition-delay: 200ms;">
+                            <div class="ic-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.81 12.81 0 0 0 .62 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.62A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </div>
+                            <div class="ic-text">
+                                <h3> Phone NO.</h3>
+                                <p>+91 95125 09292</p>
+                            </div>
+                        </div>
+
+                        <!-- Social/Business Links -->
+                        <div class="business-hours reveal-up" style="transition-delay: 300ms;">
+                            <h3>Operational Hours</h3>
+                            <ul>
+                                <li><span>Mon - Fri (Full Service)</span> <span>09:00 - 19:00</span></li>
+                                <li><span>Saturday (Logistics Only)</span> <span>10:00 - 16:00</span></li>
+                                <li><span>Sunday & Holidays</span> <span class="closed">Strategic Offline</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Form -->
+                    <div class="contact-form-wrap reveal-right">
+                        <div class="form-container">
+                            <div class="form-header">
+                                <h2>Send an <span>Inquiry</span></h2>
+                                <p>Fill out the form below and our export division will get back to you within 24 hours.
+                                </p>
+                            </div>
+                            <form id="contact-form" action="#" method="POST">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Inquiry Subject</label>
+                                        <select id="subject" name="subject">
+                                            <option value="export">Export Inquiry</option>
+                                            <option value="products">Product Quality</option>
+                                            <option value="logistics">Logistics & Sea Freight</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Your Message</label>
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Submit Inquiry
+                                    <span>→</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section section-animate">
+            <div class="map-container reveal-scale">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.854992523927!2d70.7927313!3d22.2829689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959cb169bda14af%3A0xf450e353f1ce0c49!2sAjana%20Impex!5e0!3m2!1sen!2sin!4v1715764000000!5m2!1sen!2sin"
+                    width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
     </main>

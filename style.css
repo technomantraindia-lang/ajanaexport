@@ -1736,39 +1736,179 @@ section {
     color: #fff;
 }
 
+/* ==========================================================================
+   FOOTER SECTION (Unified & Consolidated)
+   ========================================================================== */
 footer {
-    background: #071707;
-    color: rgba(255, 255, 255, 0.73);
-    padding: 68px 0 25px;
+    background: #050e05;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 100px 0 40px;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 10;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr 1fr;
-    gap: 38px;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.footer-about-col {
+    max-width: 500px;
 }
 
 .footer-logo {
-    width: 140px;
-    margin-bottom: 16px;
+    width: 180px;
+    margin-bottom: 30px;
+    height: auto;
+}
+
+.footer-mission-text {
+    line-height: 1.8;
+    margin-bottom: 35px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 footer h4 {
-    color: var(--white);
-    margin-bottom: 14px;
+    color: var(--gold-soft) !important;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    font-family: "Playfair Display", serif;
+    position: relative;
+    display: block;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+footer h4::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
 }
 
 footer a {
     display: block;
-    margin-bottom: 9px;
+    margin-bottom: 15px;
+    transition: 0.3s var(--ease);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--gold-soft);
+    transform: translateX(8px);
+}
+
+.footer-social-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.fs-circle {
+    width: 46px;
+    height: 46px;
+    background: #58b380;
+    color: #fff !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s var(--ease);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+}
+
+.fs-circle:hover {
+    background: #469c6d;
+    transform: translateY(-8px) rotate(8deg) scale(1.1);
+    box-shadow: 0 12px 30px rgba(88, 179, 128, 0.5);
+}
+
+.fs-circle svg {
+    width: 22px;
+    height: 22px;
+    fill: #ffffff !important;
+}
+
+.footer-contact-col p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-contact-col strong {
+    color: var(--gold-soft);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
 }
 
 .copyright {
-    margin-top: 40px;
-    padding-top: 34px;
+    margin-top: 80px;
+    padding-top: 40px;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
 }
+
+/* Responsive Footer */
+@media (max-width: 1200px) {
+    .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 40px;
+    }
+    .footer-contact-col {
+        grid-column: span 3;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer-about-col {
+        grid-column: span 2;
+        margin-bottom: 40px;
+    }
+    .footer-contact-col {
+        grid-column: span 2;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-about-col, .footer-contact-col {
+        grid-column: span 1;
+    }
+    footer {
+        padding: 60px 0 30px;
+    }
+    .footer-social-row {
+        justify-content: flex-start;
+    }
+}
+
+
 
 .reveal-up,
 .reveal-left,
@@ -1859,9 +1999,7 @@ footer a {
         grid-template-columns: 1fr;
     }
 
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
 }
 
 @media (max-width: 900px) {
@@ -1989,9 +2127,7 @@ footer a {
     }
 
     .about-usp-grid,
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
+
 
     .cta-stage {
         padding: 12px;
@@ -4208,4 +4344,92 @@ footer a {
 
 
 .eh-minimal-content h1 { letter-spacing: 10px; text-transform: uppercase; }
+
+
+/* --- Contact Us Page Styles --- */
+.contact-hero { height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
+.contact-hero .hero-bg-img { position: absolute; inset: 0; z-index: 1; }
+.contact-hero .hero-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+.contact-hero .hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%); z-index: 2; }
+.contact-hero .hero-content { position: relative; z-index: 10; color: #fff; }
+
+.contact-main { padding: 100px 0; background: #050505; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: flex-start; }
+
+.info-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 30px; border-radius: 15px; display: flex; gap: 20px; margin-bottom: 25px; transition: all 0.4s ease; }
+.info-card:hover { background: rgba(205,156,50,0.05); border-color: rgba(205,156,50,0.3); transform: translateX(10px); }
+.ic-icon { font-size: 1.8rem; flex-shrink: 0; }
+.ic-text h3 { font-family: 'Playfair Display', serif; color: #cd9c32; margin-bottom: 8px; font-size: 1.2rem; }
+.ic-text p { opacity: 0.8; line-height: 1.6; }
+
+.business-hours { margin-top: 50px; padding: 30px; background: #061a0b; border-radius: 15px; border-left: 4px solid #cd9c32; }
+.business-hours h3 { margin-bottom: 20px; color: #cd9c32; }
+.business-hours ul li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); opacity: 0.8; }
+.business-hours .closed { color: #ff4d4d; font-weight: 700; }
+
+.contact-form-wrap { background: #111; padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+.form-header { margin-bottom: 40px; }
+.form-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.form-header h2 span { color: #cd9c32; }
+.form-header p { opacity: 0.6; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; opacity: 0.8; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px 20px; border-radius: 8px; color: #fff; font-family: inherit; transition: all 0.3s ease; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #cd9c32; background: rgba(205,156,50,0.05); }
+.btn-block { width: 100%; padding: 20px; justify-content: center; }
+
+.map-section { padding-bottom: 100px; background: #050505; }
+.map-container { border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+
+@media (max-width: 1024px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+    .contact-hero { height: 50vh; }
+    .contact-form-wrap { padding: 30px; }
+    .form-row { grid-template-columns: 1fr; }
+}
+
+/* --- Enhanced Brand Theme for Contact Page --- */
+.contact-main { background: linear-gradient(180deg, #061a0b 0%, #000 100%); }
+.contact-form-wrap { background: rgba(6,26,11,0.6); border: 1px solid rgba(205,156,50,0.2); backdrop-filter: blur(15px); }
+.info-card { background: rgba(205,156,50,0.02); border-color: rgba(205,156,50,0.1); }
+.ic-icon { filter: drop-shadow(0 0 10px rgba(205,156,50,0.3)); }
+
+
+/* --- Cream & Green Contact Theme --- */
+.contact-hero-tall { height: 80vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
+.contact-hero-tall .hero-bg-img { position: absolute; inset: 0; z-index: 1; }
+.contact-hero-tall .hero-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+.contact-hero-tall .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%); z-index: 2; }
+.contact-hero-tall h1 { font-size: clamp(3rem, 6vw, 4.5rem); text-transform: none; font-family: 'Playfair Display', serif; }
+
+.contact-main { background: #fcfaf5; color: #333; }
+.info-card { background: #fff; border: 1px solid #e8e4db; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.info-card h3 { color: #061a0b; }
+.info-card p { color: #555; }
+.ic-icon { color: #061a0b; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; background: rgba(6,26,11,0.05); border-radius: 50%; }
+.ic-icon svg { width: 22px; height: 22px; }
+
+.business-hours { background: #061a0b; color: #fff; }
+.business-hours ul li { border-color: rgba(255,255,255,0.1); }
+.contact-form-wrap { background: #061a0b; color: #fff; }
+.contact-form-wrap .form-header h2 { color: #fff; }
+.contact-form-wrap .form-header h2 span { color: #cd9c32; }
+.contact-form-wrap .form-group input, .contact-form-wrap .form-group select, .contact-form-wrap .form-group textarea { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
+
+
+.hc-wrap { max-width: 800px; margin: 0 auto; text-align: center; }
+.hc-wrap p { max-width: 600px; margin: 25px auto 0; }
+.map-container iframe { filter: grayscale(1) sepia(0.2) hue-rotate(90deg) contrast(1.1); transition: all 0.5s ease; }
+.map-container:hover iframe { filter: none; }
+
+
+/* --- Full Width Map Styles --- */
+.map-section { width: 100%; padding: 0 !important; overflow: hidden; background: #fcfaf5; }
+.map-container { width: 100% !important; max-width: none !important; border-radius: 0 !important; border: none !important; }
+.map-container iframe { width: 100%; display: block; }
+
+
+
 

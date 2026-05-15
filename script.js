@@ -1026,14 +1026,14 @@ if (phSlides.length > 0) {
         gsap.to(prevSlide, { 
             x: "-100%", 
             opacity: 0, 
-            duration: 1.2, 
+            duration: 0.6, 
             ease: "power3.inOut" 
         });
 
         // 2. Next slide comes from RIGHT and fades in
         gsap.fromTo(nextSlide, 
             { x: "100%", opacity: 0 },
-            { x: "0%", opacity: 1, duration: 1.2, ease: "power3.inOut" }
+            { x: "0%", opacity: 1, duration: 0.6, ease: "power3.inOut" }
         );
-    }, 4000);
+    }, 1800);
 }
