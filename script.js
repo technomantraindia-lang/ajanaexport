@@ -1009,31 +1009,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // --- Product Hero Slideshow (Slide from Right, Exit to Left) ---
-const phSlides = document.querySelectorAll('.ph-slide');
-if (phSlides.length > 0) {
-    let currentSlide = 0;
-    
-    // Set initial position
-    gsap.set(phSlides, { x: "100%", opacity: 0 });
-    gsap.set(phSlides[0], { x: "0%", opacity: 1 });
+const phSlideshow = document.querySelector('.ph-slideshow');
+if (phSlideshow) {
+    const phSlides = phSlideshow.querySelectorAll('.ph-slide');
+    if (phSlides.length > 0) {
+        let currentSlide = 0;
+        
+        // Initial setup: hide all except first
+        gsap.set(phSlides, { x: "100%", opacity: 0 });
+        gsap.set(phSlides[0], { x: "0%", opacity: 1 });
 
-    setInterval(() => {
-        const prevSlide = phSlides[currentSlide];
-        currentSlide = (currentSlide + 1) % phSlides.length;
-        const nextSlide = phSlides[currentSlide];
+        setInterval(() => {
+            const prevSlide = phSlides[currentSlide];
+            currentSlide = (currentSlide + 1) % phSlides.length;
+            const nextSlide = phSlides[currentSlide];
 
-        // 1. Current slide moves LEFT and fades out
-        gsap.to(prevSlide, { 
-            x: "-100%", 
-            opacity: 0, 
-            duration: 0.6, 
-            ease: "power3.inOut" 
-        });
+            // 1. Current slide moves LEFT and fades out
+            gsap.to(prevSlide, { 
+                x: "-100%", 
+                opacity: 0, 
+                duration: 0.8, 
+                ease: "power3.inOut" 
+            });
 
-        // 2. Next slide comes from RIGHT and fades in
-        gsap.fromTo(nextSlide, 
-            { x: "100%", opacity: 0 },
-            { x: "0%", opacity: 1, duration: 0.6, ease: "power3.inOut" }
-        );
-    }, 1800);
+            // 2. Next slide comes from RIGHT and fades in
+            gsap.fromTo(nextSlide, 
+                { x: "100%", opacity: 0 },
+                { x: "0%", opacity: 1, duration: 0.8, ease: "power3.inOut" }
+            );
+        }, 3000); // 3 seconds per slide
+    }
 }
