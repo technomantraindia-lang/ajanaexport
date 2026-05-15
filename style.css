@@ -4440,3 +4440,16 @@ footer a:hover {
 
 
 
+
+/* Portfolio Title - One Line Fix */
+.portfolio-title {
+    white-space: nowrap;
+    max-width: none !important;
+}
+
+@media (max-width: 768px) {
+    .portfolio-title {
+        white-space: normal;
+        font-size: 2rem !important;
+    }
+}
