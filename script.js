@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function initPageLogic() {
-    const navbar = document.querySelector(".navbar");
+    const navbar = document.querySelector(".header");
     const cursorGlow = document.querySelector(".cursor-glow");
     const menuBtn = document.querySelector(".menu-btn");
     const navLinks = document.querySelector(".nav-links");
-    const quickInquiryBtn = document.querySelector(".nav-btn");
+    const quickInquiryBtn = document.querySelector(".quick-inquiry-btn");
 
     // Fix active link highlighting
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
@@ -61,6 +61,17 @@ function initPageLogic() {
             target?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
     }
+    // --- Mobile Dropdown Toggle ---
+    const dropdownToggles = document.querySelectorAll(".has-dropdown > a");
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener("click", (e) => {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                const parent = toggle.parentElement;
+                parent.classList.toggle("active");
+            }
+        });
+    });
 
     if (menuBtn && navLinks) {
         menuBtn.addEventListener("click", () => {
@@ -589,179 +600,111 @@ function initPageLogic() {
         });
     }
 
-    const productSwitcher = document.querySelector(".product-switcher");
-    if (productSwitcher) {
-        const steps = Array.from(document.querySelectorAll(".product-step"));
-        const productMainImage = document.getElementById("productMainImage");
-        const productImageChip = document.getElementById("productImageChip");
-        const productCode = document.getElementById("productCode");
-        const productPill = document.getElementById("productPill");
-        const productTitle = document.getElementById("productTitle");
-        const productDescription = document.getElementById("productDescription");
-        const productPoints = document.getElementById("productPoints");
-        const productTags = document.getElementById("productTags");
+    // --- Our Product Portfolio Logic ---
+    const pfPanels = document.querySelectorAll(".pf-panel");
+    if (pfPanels.length > 0) {
+        pfPanels.forEach((panel, i) => {
+            const img = panel.querySelector("img");
+            const content = panel.querySelector(".pf-content");
+            const contentElements = content ? Array.from(content.children) : [];
 
-        const products = [
-            {
-                name: "CORN DDGS",
-                image: "Videos and images/corn_ddgs.jpg",
-                chip: "Premium Feed Grade",
-                pill: "Cattle Feed Ingredient",
-                description: "Protein-rich and digestible feed ingredient suitable for cattle ration balancing and performance-based feed formulations.",
-                points: [
-                    "High consistency for controlled feed formulation.",
-                    "Supports livestock nutrition and weight gain plans.",
-                    "Available for domestic and export bulk supply."
-                ],
-                tags: ["Protein Rich", "Bulk Supply", "Export Ready"]
-            },
-            {
-                name: "RICE DDGS",
-                image: "Videos and images/rice_ddgs.jpg",
-                chip: "Consistent Quality",
-                pill: "Cattle Feed Ingredient",
-                description: "Reliable rice-based distillers grain ingredient used for cattle feed blends and cost-effective ration planning.",
-                points: [
-                    "Balanced nutritional support for cattle feed.",
-                    "Suitable for routine feed blending operations.",
-                    "Steady lot quality for repeat procurement."
-                ],
-                tags: ["Digestible", "Stable Supply", "Feed Blend"]
-            },
-            {
-                name: "RICE PROTEIN MEAL",
-                image: "Videos and images/food bag.jpg",
-                chip: "High Protein Source",
-                pill: "Protein Feed Material",
-                description: "Concentrated protein feed material used to improve nutritional value in compound feed formulations.",
-                points: [
-                    "Improves overall protein profile in feed.",
-                    "Preferred for mixed livestock feed production.",
-                    "Handled with quality-focused packing support."
-                ],
-                tags: ["Protein", "Nutrient Boost", "Quality Packed"]
-            },
-            {
-                name: "DEOILED CORN DDGS",
-                image: "Videos and images/food bag.jpg",
-                chip: "Processed Ingredient",
-                pill: "Energy and Protein Feed",
-                description: "Processed corn DDGS variant with controlled oil profile for structured feed balancing requirements.",
-                points: [
-                    "Suitable for performance-focused feed plans.",
-                    "Maintains dependable batch-to-batch consistency.",
-                    "Designed for commercial feed manufacturing use."
-                ],
-                tags: ["Processed", "Feed Formula", "Commercial Use"]
-            },
-            {
-                name: "CORN GLUTEN MEAL",
-                image: "Videos and images/corn_gluten.jpg",
-                chip: "Plant Protein Grade",
-                pill: "Plant Protein Ingredient",
-                description: "Corn-based plant protein ingredient widely used in poultry and livestock formulations requiring concentrated protein.",
-                points: [
-                    "Strong protein profile for feed applications.",
-                    "Supports poultry and livestock feed strategies.",
-                    "Reliable sourcing with dispatch coordination."
-                ],
-                tags: ["Plant Protein", "Poultry Use", "Reliable Sourcing"]
-            },
-            {
-                name: "CORN FEED MEAL",
-                image: "Videos and images/food bag.jpg",
-                chip: "Energy Feed Input",
-                pill: "Feed Meal Ingredient",
-                description: "Versatile corn feed meal for feed blending, supporting energy requirements in large-scale livestock feed programs.",
-                points: [
-                    "Works well in multiple feed blend ratios.",
-                    "Useful for high-volume feed operations.",
-                    "Supported by practical logistics handling."
-                ],
-                tags: ["Energy Input", "Versatile", "High Volume"]
-            },
-            {
-                name: "SOYABEAN MEAL",
-                image: "Videos and images/food bag.jpg",
-                chip: "Trusted Protein Meal",
-                pill: "High-Protein Feed Ingredient",
-                description: "Soyabean meal used as a premium protein ingredient in feed formulas for livestock and poultry applications.",
-                points: [
-                    "Preferred protein source in feed formulas.",
-                    "Supports growth-oriented nutrition planning.",
-                    "Available with dependable bulk availability."
-                ],
-                tags: ["Premium Protein", "Growth Support", "Bulk Ready"]
-            }
-        ];
-
-        const renderProduct = (index, animate = true) => {
-            const item = products[index];
-            if (!item) return;
-
-            const changeContent = () => {
-                if (productMainImage) {
-                    productMainImage.src = item.image;
-                    productMainImage.alt = item.name;
+            // 1. Initial Scroll Entrance Animation for the Panel
+            gsap.fromTo(panel, {
+                opacity: 0,
+                y: 80,
+                scale: 0.96
+            }, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.4,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: panel,
+                    start: "top 88%",
+                    toggleActions: "play none none none"
                 }
-                if (productImageChip) productImageChip.textContent = item.chip;
-                if (productCode) productCode.textContent = `${String(index + 1).padStart(2, "0")} / 07`;
-                if (productPill) productPill.textContent = item.pill;
-                if (productTitle) productTitle.textContent = item.name;
-                if (productDescription) productDescription.textContent = item.description;
+            });
 
-                if (productPoints) productPoints.innerHTML = item.points.map((point) => `<li>${point}</li>`).join("");
-                if (productTags) productTags.innerHTML = item.tags.map((tag) => `<span>${tag}</span>`).join("");
-            };
-
-            if (animate && window.gsap) {
-                gsap.to([".product-image-panel", ".product-content-panel"], {
+            // Sequential Content Reveal
+            if (contentElements.length > 0) {
+                gsap.fromTo(contentElements, {
                     opacity: 0,
-                    y: 16,
-                    duration: 0.2,
-                    ease: "power2.in",
-                    onComplete: () => {
-                        changeContent();
-                        gsap.fromTo([".product-image-panel", ".product-content-panel"], {
-                            opacity: 0,
-                            y: 18
-                        }, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.38,
-                            ease: "power3.out"
-                        });
+                    y: 20,
+                    filter: "blur(8px)"
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    stagger: 0.12,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "top 75%"
                     }
                 });
-            } else {
-                changeContent();
             }
-        };
 
-        steps.forEach((step, idx) => {
-            step.addEventListener("click", () => {
-                steps.forEach((btn) => btn.classList.remove("is-active"));
-                step.classList.add("is-active");
-                renderProduct(idx, true);
+            // 2. Premium Interactive Tilt & Magnetic Parallax
+            panel.addEventListener("mousemove", (e) => {
+                const rect = panel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const percentX = (x - centerX) / centerX;
+                const percentY = (y - centerY) / centerY;
+
+                // Tilt the whole panel
+                gsap.to(panel, {
+                    rotationX: -percentY * 3,
+                    rotationY: percentX * 3,
+                    y: -12,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+
+                // Magnetic Parallax for the product image
+                if (img) {
+                    gsap.to(img, {
+                        x: percentX * 25,
+                        y: percentY * 25,
+                        scale: 1.1,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    });
+                }
+                
+                // Slight counter-shift for content to add depth
+                if (content) {
+                    gsap.to(content, {
+                        x: -percentX * 8,
+                        y: -percentY * 8,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    });
+                }
+            });
+
+            panel.addEventListener("mouseleave", () => {
+                gsap.to([panel, img, content], {
+                    rotationX: 0,
+                    rotationY: 0,
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: "elastic.out(1, 0.75)",
+                    overwrite: "auto"
+                });
             });
         });
-
-        renderProduct(0, false);
-
-        if (window.gsap) {
-            gsap.timeline({
-                defaults: { ease: "power3.out" },
-                scrollTrigger: {
-                    trigger: "#products",
-                    start: "top 70%",
-                    toggleActions: "play none none none",
-                    once: true
-                }
-            })
-                .fromTo(".product-heading", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0)
-                .fromTo(".product-nav .product-step", { x: -24, opacity: 0 }, { x: 0, opacity: 1, stagger: 0.06, duration: 0.45 }, 0.1)
-                .fromTo(".product-view", { x: 64, opacity: 0, rotationY: -10 }, { x: 0, opacity: 1, rotationY: 0, duration: 0.8 }, 0.2);
-        }
     }
 
     const exportStage = document.querySelector(".export-stage");
@@ -1064,3 +1007,33 @@ document.addEventListener("DOMContentLoaded", function () {
     activeIndex = (activeIndex + 1) % items.length;
   }, 1800);
 });
+
+// --- Product Hero Slideshow (Slide from Right, Exit to Left) ---
+const phSlides = document.querySelectorAll('.ph-slide');
+if (phSlides.length > 0) {
+    let currentSlide = 0;
+    
+    // Set initial position
+    gsap.set(phSlides, { x: "100%", opacity: 0 });
+    gsap.set(phSlides[0], { x: "0%", opacity: 1 });
+
+    setInterval(() => {
+        const prevSlide = phSlides[currentSlide];
+        currentSlide = (currentSlide + 1) % phSlides.length;
+        const nextSlide = phSlides[currentSlide];
+
+        // 1. Current slide moves LEFT and fades out
+        gsap.to(prevSlide, { 
+            x: "-100%", 
+            opacity: 0, 
+            duration: 1.2, 
+            ease: "power3.inOut" 
+        });
+
+        // 2. Next slide comes from RIGHT and fades in
+        gsap.fromTo(nextSlide, 
+            { x: "100%", opacity: 0 },
+            { x: "0%", opacity: 1, duration: 1.2, ease: "power3.inOut" }
+        );
+    }, 4000);
+}
