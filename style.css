@@ -89,13 +89,13 @@ button {
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 18px 40px;
+    padding: 12px 40px;
     transition: 0.35s var(--ease);
 }
 
 .header.scrolled {
     background: rgba(255, 255, 255, 0.45);
-    padding: 12px 40px;
+    padding: 8px 40px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
@@ -108,7 +108,9 @@ button {
 }
 
 .logo img {
-    height: 62px;
+    height: 85px;
+    width: auto;
+    display: block;
 }
 
 .nav-links {
@@ -2117,7 +2119,7 @@ footer a:hover {
     }
 
     .logo img {
-        height: 52px;
+        height: 70px;
     }
 
     .stats,
