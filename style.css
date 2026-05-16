@@ -4537,7 +4537,16 @@ footer a:hover {
     .eh-minimal-left { padding: 100px 25px 40px; }
     .eh-minimal-right { height: 300px; }
     .eh-minimal-content h1 { font-size: 3.2rem; }
-    .hero-feature-row { flex-direction: column; gap: 30px; align-items: center; }
+    .hero-feature-row { 
+        flex-direction: row !important; 
+        gap: 12px !important; 
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+    }
+    .h-feature { flex: 1; }
+    .hf-icon { width: 45px !important; height: 45px !important; margin-bottom: 8px !important; }
+    .hf-icon svg { width: 20px !important; height: 20px !important; }
+    .h-feature span { font-size: 0.6rem !important; line-height: 1.2; text-align: center; min-height: 30px; }
     .h-feature:not(:last-child)::after { display: none; }
     .eh-minimal-content p { margin-bottom: 40px; }
     
