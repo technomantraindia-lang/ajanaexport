@@ -4534,21 +4534,30 @@ footer a:hover {
 }
 
 @media (max-width: 600px) {
-    .eh-minimal-left { padding: 100px 25px 40px; }
-    .eh-minimal-right { height: 300px; }
+    .eh-minimal-left { padding: 80px 25px 30px !important; min-height: auto !important; }
+    .eh-minimal-right { height: 280px; }
     .eh-minimal-content h1 { font-size: 3.2rem; }
+    .pill-tag { margin-bottom: 15px !important; padding: 6px 18px !important; }
+    .gold-divider { margin: 15px 0 !important; }
+    .eh-minimal-content p { 
+        margin-bottom: 25px !important; 
+        font-size: 0.95rem !important; 
+        opacity: 0.9 !important; 
+        color: rgba(255,255,255,0.9) !important;
+    }
+    
     .hero-feature-row { 
         flex-direction: row !important; 
-        gap: 12px !important; 
+        gap: 8px !important; 
         justify-content: space-between !important;
         align-items: flex-start !important;
+        margin-top: 10px !important;
     }
     .h-feature { flex: 1; }
-    .hf-icon { width: 45px !important; height: 45px !important; margin-bottom: 8px !important; }
-    .hf-icon svg { width: 20px !important; height: 20px !important; }
-    .h-feature span { font-size: 0.6rem !important; line-height: 1.2; text-align: center; min-height: 30px; }
+    .hf-icon { width: 42px !important; height: 42px !important; margin-bottom: 8px !important; }
+    .hf-icon svg { width: 18px !important; height: 18px !important; }
+    .h-feature span { font-size: 0.58rem !important; line-height: 1.1; text-align: center; min-height: 25px; }
     .h-feature:not(:last-child)::after { display: none; }
-    .eh-minimal-content p { margin-bottom: 40px; }
     
     .globe-text h2 { font-size: 2.2rem; }
     .stats-grid { grid-template-columns: 1fr; }
