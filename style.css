@@ -1116,7 +1116,7 @@ section {
     .pf-content { 
         display: contents;
     }
-    .pf-content span { 
+    .pf-content > span { 
         order: 1 !important; 
         margin: 0 auto 15px 0 !important; 
         display: inline-flex !important;
