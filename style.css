@@ -1944,7 +1944,32 @@ footer a:hover {
     }
 }
 
+@media (max-width: 1400px) {
+    .container {
+        max-width: 92%;
+    }
+    
+    .header {
+        padding: 0 40px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3.5rem, 8vw, 5.5rem);
+    }
+}
+
 @media (max-width: 1200px) {
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .header {
+        padding: 0 30px;
+    }
+
+    .nav-links.active {
+        top: 100px;
+    }
 
     .why-layout,
     .about-premium,
@@ -2023,8 +2048,8 @@ footer a:hover {
     }
 
     .logo img {
-        height: 130px;
-        margin: -20px 0;
+        height: 110px;
+        margin: -15px 0;
     }
 
     .nav-links.active {
@@ -2120,16 +2145,20 @@ footer a:hover {
 
 @media (max-width: 600px) {
     section {
-        padding: 78px 0;
+        padding: 65px 0;
     }
 
     .header {
-        padding: 0 20px;
+        padding: 0 16px;
     }
 
     .logo img {
-        height: 110px;
-        margin: -15px 0;
+        height: 90px;
+        margin: -10px 0;
+    }
+
+    .quick-inquiry-btn {
+        display: none;
     }
 
     .stats,
@@ -3406,15 +3435,16 @@ footer a:hover {
 
 @media (max-width: 1180px) {
   .purpose-flow-wrap {
-    max-width: 960px;
+    max-width: 90%;
   }
 
   .purpose-cards {
-    grid-template-columns: repeat(2, 340px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 
   .connector-svg {
-    height: 420px;
+    display: none;
   }
 }
 
@@ -4458,8 +4488,19 @@ footer a:hover {
 
 @media (max-width: 768px) {
     .portfolio-title {
-        font-size: 2.2rem !important;
+        font-size: 1.8rem !important;
         white-space: normal;
+        margin-bottom: 20px !important;
+    }
+
+    .production-process {
+        padding: 60px 0;
+    }
+
+    .process-video-wrap {
+        border-radius: 15px;
+        border-width: 4px;
+        margin: 20px 16px 0;
     }
 }
 
