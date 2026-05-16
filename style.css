@@ -2167,8 +2167,21 @@ footer a:hover {
         flex-direction: column;
     }
 
-    .about-usp-grid,
+    .about-usp-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
+    .about-usp-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 24px;
+    }
+
+    .about-usp-card .icon {
+        margin-bottom: 15px;
+    }
 
     .cta-stage {
         padding: 12px;
