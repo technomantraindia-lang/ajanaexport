@@ -2293,6 +2293,59 @@ footer a:hover {
     justify-content: center;
 }
 
+@media (max-width: 600px) {
+    .about-hero {
+        height: auto;
+        min-height: 300px;
+        background: #f8f7f2; /* Matches the image background */
+    }
+
+    .about-hero-bg {
+        position: relative;
+        height: auto;
+        padding-top: 80px; /* Header space */
+    }
+
+    .about-hero-bg img {
+        height: auto;
+        object-fit: contain;
+    }
+
+    .about-visual-wrap {
+        min-height: 420px;
+        margin-top: 30px;
+    }
+
+    .about-frame-main {
+        width: 85%;
+        height: 320px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .about-frame-side {
+        width: 60%;
+        height: 220px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 5;
+        border-width: 6px;
+    }
+
+    .about-floating-top {
+        top: 20px;
+        right: -10px;
+        left: auto;
+    }
+
+    .about-floating-bottom {
+        bottom: 40px;
+        left: -10px;
+    }
+}
+
 .about-hero-bg img {
     width: 100%;
     height: 100%;
@@ -3637,6 +3690,23 @@ footer a:hover {
   gap: 34px;
 }
 
+@media (max-width: 1100px) {
+  .quality-strip-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .quality-strip-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .quality-item {
+    padding: 15px 10px;
+  }
+}
+
 .quality-item {
   position: relative;
   display: flex;
@@ -4309,6 +4379,21 @@ footer a:hover {
 .stat-card strong { display: block; font-size: 2rem; color: #cd9c32; margin-bottom: 5px; }
 .stat-card span { font-size: 0.9rem; color: #5e665e; text-transform: uppercase; font-weight: 700; }
 
+.globe-visual { 
+    height: 600px; 
+    width: 100%; 
+    position: relative;
+}
+
+#globe-container {
+    width: 100%;
+    height: 100%;
+}
+
+.market-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.market-list li { font-size: 1rem; color: #555; display: flex; align-items: center; gap: 8px; }
+.market-list li::before { content: '✓'; color: #cd9c32; font-weight: 800; }
+
 /* --- Orbital Globe Animation --- */
 .orbital-globe-wrap { position: relative; width: 500px; height: 500px; display: flex; align-items: center; justify-content: center; transform: scale(0.9); }
 .globe-core { width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #2e7d32 0%, #061a0b 100%); border-radius: 50%; box-shadow: 0 0 80px rgba(46, 125, 50, 0.3), inset -20px -20px 50px rgba(0,0,0,0.5); position: relative; z-index: 5; }
@@ -4436,14 +4521,32 @@ footer a:hover {
 .minimal-video { width: 100%; height: 100%; object-fit: cover; }
 .minimal-gradient-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, #061a0b 0%, rgba(6,26,11,0.8) 20%, transparent 100%); }
 .eh-minimal-content h1 { font-size: clamp(4rem, 10vw, 7.5rem); line-height: 0.9; font-weight: 900; color: #fff; margin: 0; }
-.eh-minimal-content h1 span { color: #cd9c32; /* Kept gold as accent, but can be white if strictly Green/White */ }
+.eh-minimal-content h1 span { color: #cd9c32; }
 
 @media (max-width: 1100px) {
-    .export-hero-minimal { flex-direction: column; }
+    .export-hero-minimal { flex-direction: column; height: auto; }
     .eh-minimal-left, .eh-minimal-right { width: 100%; }
-    .eh-minimal-left { height: 50vh; padding: 40px; }
-    .eh-minimal-right { height: 50vh; }
+    .eh-minimal-left { padding: 120px 50px 60px; min-height: 60vh; }
+    .eh-minimal-right { height: 450px; }
     .minimal-gradient-overlay { background: linear-gradient(180deg, #061a0b 0%, transparent 100%); }
+    .globe-layout { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+    .stats-grid { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+    .eh-minimal-left { padding: 100px 25px 40px; }
+    .eh-minimal-right { height: 300px; }
+    .eh-minimal-content h1 { font-size: 3.2rem; }
+    .hero-feature-row { flex-direction: column; gap: 30px; align-items: center; }
+    .h-feature:not(:last-child)::after { display: none; }
+    .eh-minimal-content p { margin-bottom: 40px; }
+    
+    .globe-text h2 { font-size: 2.2rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .markets-grid { grid-template-columns: 1fr; gap: 20px; }
+    .market-region { padding: 25px; }
+    .standards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .globe-visual { height: 350px; }
 }
 
 .eh-minimal-content h1 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
