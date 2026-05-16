@@ -955,11 +955,11 @@ section {
 
 .pf-image img {
     position: absolute;
-    width: 65%;
-    height: 110%;
+    width: 55%;
+    height: 90%;
     object-fit: contain;
     right: -5%;
-    bottom: -15%;
+    bottom: 0%;
     z-index: 2;
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
     transition: transform 1.2s var(--ease), filter 0.8s var(--ease);
@@ -972,7 +972,7 @@ section {
 }
 
 .pf-panel:hover .pf-image img {
-    transform: scale(1.05) translateY(-10px);
+    transform: scale(1.03) translateY(-6px);
     filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.8));
 }
 
@@ -1759,10 +1759,12 @@ footer {
 }
 
 .footer-logo {
-    width: 130px;
-    margin: 0 auto 30px;
+    width: 200px;
+    margin: 0 auto 35px;
     display: block;
     height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .footer-mission-text {
@@ -1770,7 +1772,7 @@ footer {
     margin-bottom: 35px;
     font-style: italic;
     color: rgba(255, 255, 255, 0.6);
-    text-align: center;
+    text-align: left;
 }
 
 footer h4 {
