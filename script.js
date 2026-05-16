@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function initPageLogic() {
     const navbar = document.querySelector(".header");
-    const cursorGlow = document.querySelector(".cursor-glow");
     const menuBtn = document.querySelector(".menu-btn");
     const navLinks = document.querySelector(".nav-links");
     const quickInquiryBtn = document.querySelector(".quick-inquiry-btn");
@@ -90,22 +89,7 @@ function initPageLogic() {
     const hasGSAP = Boolean(window.gsap && window.ScrollTrigger);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (cursorGlow) {
-        if (hasGSAP && !prefersReducedMotion) {
-            const moveX = gsap.quickTo(cursorGlow, "left", { duration: 0.35, ease: "power3" });
-            const moveY = gsap.quickTo(cursorGlow, "top", { duration: 0.35, ease: "power3" });
 
-            window.addEventListener("mousemove", (e) => {
-                moveX(e.clientX);
-                moveY(e.clientY);
-            });
-        } else {
-            window.addEventListener("mousemove", (e) => {
-                cursorGlow.style.left = `${e.clientX}px`;
-                cursorGlow.style.top = `${e.clientY}px`;
-            });
-        }
-    }
 
     if (!hasGSAP || prefersReducedMotion) {
         document.querySelectorAll("[data-count]").forEach((counter) => {

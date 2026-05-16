@@ -67,17 +67,7 @@ button {
     z-index: 2000;
 }
 
-.cursor-glow {
-    position: fixed;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background: radial-gradient(circle, rgba(215, 173, 66, 0.22), transparent 68%);
-    mix-blend-mode: multiply;
-}
+
 
 .header {
     width: 100%;
@@ -89,13 +79,13 @@ button {
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 10px 40px;
+    padding: 0 40px;
     transition: 0.35s var(--ease);
 }
 
 .header.scrolled {
     background: rgba(255, 255, 255, 0.45);
-    padding: 8px 40px;
+    padding: 0 40px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
@@ -111,11 +101,12 @@ button {
     height: 140px;
     width: auto;
     display: block;
+    margin: 5px 0 -25px 0;
     transition: 0.3s var(--ease);
 }
 
 .header.scrolled .logo img {
-    height: 100px;
+    height: 140px;
 }
 
 .nav-links {
@@ -994,6 +985,7 @@ section {
     transform: translateY(-50%);
     display: grid;
     gap: 18px;
+    justify-items: start;
     pointer-events: none;
 }
 
@@ -1767,8 +1759,9 @@ footer {
 }
 
 .footer-logo {
-    width: 180px;
-    margin-bottom: 30px;
+    width: 130px;
+    margin: 0 auto 30px;
+    display: block;
     height: auto;
 }
 
@@ -1777,6 +1770,7 @@ footer {
     margin-bottom: 35px;
     font-style: italic;
     color: rgba(255, 255, 255, 0.6);
+    text-align: center;
 }
 
 footer h4 {
@@ -1818,6 +1812,7 @@ footer a:hover {
     gap: 15px;
     margin-top: 30px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .fs-circle {
@@ -2010,9 +2005,7 @@ footer a:hover {
 }
 
 @media (max-width: 900px) {
-    .cursor-glow {
-        display: none;
-    }
+
 
     .nav-links,
     .quick-inquiry-btn {
@@ -2023,11 +2016,20 @@ footer a:hover {
         display: block;
     }
 
+    .header {
+        padding: 0 30px;
+    }
+
+    .logo img {
+        height: 130px;
+        margin: -20px 0;
+    }
+
     .nav-links.active {
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 70px;
+        top: 80px;
         left: 0;
         right: 0;
         width: 100%;
@@ -2120,11 +2122,12 @@ footer a:hover {
     }
 
     .header {
-        padding: 12px 20px;
+        padding: 0 20px;
     }
 
     .logo img {
-        height: 90px;
+        height: 110px;
+        margin: -15px 0;
     }
 
     .stats,
@@ -3256,7 +3259,7 @@ footer a:hover {
   position: relative;
   z-index: 4;
   display: grid;
-  grid-template-columns: repeat(2, 350px);
+  grid-template-columns: repeat(2, 430px);
   justify-content: space-between;
   gap: 0;
   margin-top: 135px;
