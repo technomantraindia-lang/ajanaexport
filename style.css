@@ -326,6 +326,7 @@ section {
 .why {
     perspective: 1500px;
     isolation: isolate;
+    overflow: hidden;
 }
 
 .why::before {
@@ -1110,25 +1111,34 @@ section {
         flex-direction: column;
         background: linear-gradient(135deg, var(--forest-900), #0a1f0d);
         margin-bottom: 35px;
-        padding: 40px 25px 35px;
+        padding: 40px 25px 95px; /* Added extra bottom padding to make room for absolute button */
         gap: 0;
+        position: relative; /* Ensure the absolute button positioning is relative to pf-panel */
     }
     .pf-content { 
-        display: contents;
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        position: static !important;
+        transform: none !important;
+        gap: 15px !important;
     }
-    .pf-content > span { 
-        order: 1 !important; 
-        margin: 0 auto 15px 0 !important; 
+    .pf-content span { 
+        margin: 0 auto 0 0 !important; 
         display: inline-flex !important;
         width: 48px !important;
     }
-    .pf-head { order: 2 !important; margin-bottom: 15px !important; width: 100% !important; }
-    .pf-head h2 { font-size: 26px; line-height: 1.2; text-align: left; }
-    .pf-desc { 
-        order: 3 !important; 
+    .pf-content h3 { 
+        margin-bottom: 0 !important; 
+        width: 100% !important; 
+        font-size: 26px; 
+        line-height: 1.2; 
+        text-align: left; 
+    }
+    .pf-content p { 
         font-size: 0.95rem; 
         line-height: 1.6; 
-        margin-bottom: 25px !important; 
+        margin-bottom: 0 !important; 
         color: rgba(255, 255, 255, 0.8);
         text-align: left;
         width: 100% !important;
@@ -1139,13 +1149,13 @@ section {
         width: 100% !important;
         height: 180px !important;
         inset: auto !important;
-        order: 4 !important;
         background: transparent !important;
         overflow: visible !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        margin-bottom: 25px !important;
+        margin-top: 20px !important;
+        margin-bottom: 0 !important;
         transform: none !important;
     }
     .pf-image img { 
@@ -1158,16 +1168,15 @@ section {
         transform: none !important;
     }
 
-    .pf-action {
-        order: 5 !important;
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-    }
-
     .pf-btn {
-        width: 100%;
-        justify-content: center;
+        position: absolute !important;
+        bottom: 35px !important;
+        left: 25px !important;
+        right: 25px !important;
+        width: auto !important;
+        margin: 0 !important;
+        justify-content: center !important;
+        display: inline-flex !important;
     }
 
     .pf-panel:nth-child(even) .pf-image img {
@@ -2265,50 +2274,52 @@ footer a:hover {
 
 /* --- About Page Specifics --- */
 .about-hero {
-    height: 100vh;
-    background: #0d2818;
+    background: #f8f7f2; /* Matches the image background */
     display: flex;
+    justify-content: center;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    padding-top: 110px; /* Space for desktop fixed header */
+    padding-bottom: 0;
+    width: 100%;
 }
 
 .about-hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
+    background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.1) 100%);
     z-index: 2;
     pointer-events: none;
+    display: none; /* Hide vignette on light image */
 }
 
 .about-hero-bg {
-    position: absolute;
-    inset: 0;
     width: 100%;
-    height: 100%;
-    z-index: 1;
+    max-width: 100%;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 600px) {
     .about-hero {
         height: auto;
-        min-height: 300px;
+        min-height: auto;
         background: #f8f7f2; /* Matches the image background */
+        padding-top: 85px; /* Mobile header space */
+        padding-bottom: 15px;
     }
 
     .about-hero-bg {
         position: relative;
         height: auto;
-        padding-top: 80px; /* Header space */
+        padding-top: 0;
     }
 
     .about-hero-bg img {
         height: auto;
-        object-fit: contain;
     }
 
     .about-visual-wrap {
@@ -2334,22 +2345,66 @@ footer a:hover {
         border-width: 6px;
     }
 
+    .about-floating {
+        position: absolute !important;
+    }
+
     .about-floating-top {
-        top: 20px;
-        right: -10px;
-        left: auto;
+        top: 15px !important;
+        left: -10px !important;
+        right: auto !important;
+        bottom: auto !important;
     }
 
     .about-floating-bottom {
-        bottom: 40px;
-        left: -10px;
+        bottom: 15px !important;
+        right: -10px !important;
+        left: auto !important;
+        top: auto !important;
+    }
+
+    /* Why Section Mobile Optimizations */
+    .why-card {
+        max-width: 450px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 20px;
+    }
+    .why-card .icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .ring-one {
+        width: 295px !important;
+        height: 295px !important;
+    }
+    .ring-two {
+        width: 215px !important;
+        height: 215px !important;
+    }
+    .hub-glow {
+        width: 170px !important;
+        height: 170px !important;
+    }
+    .hub-card {
+        width: 200px !important;
+        height: 230px !important;
+        padding: 22px !important;
+    }
+    .center-hub {
+        min-height: 310px !important;
     }
 }
 
 .about-hero-bg img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain; /* Prevents image cropping */
     opacity: 1;
     filter: none;
     transform: scale(1);
