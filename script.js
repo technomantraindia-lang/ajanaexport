@@ -714,7 +714,7 @@ function initPageLogic() {
                 opacity: 1,
                 duration: 0.9
             }, 0)
-            .fromTo(".export-content .tag, .export-content h2, .export-content p", {
+            .fromTo(".export-content .tag, .export-content h1, .export-content p", {
                 y: 24,
                 opacity: 0
             }, {
