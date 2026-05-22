@@ -623,6 +623,21 @@ section {
     margin-right: auto;
 }
 
+.about-kicker {
+    padding: 12px 24px;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+    display: inline-flex;
+}
+
+.about-title {
+    margin: 18px 0 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.5rem, 5vw, 4.8rem);
+    line-height: 1.1;
+    color: #0c3515;
+}
+
 .about-main-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -641,7 +656,7 @@ section {
 .about-usp-card {
     display: flex;
     gap: 20px;
-    padding: 30px;
+    padding: 24px;
     background: white;
     border-radius: 20px;
     border: 1px solid rgba(205, 156, 50, 0.2);
@@ -666,11 +681,12 @@ section {
     justify-content: center;
     font-size: 1.4rem;
     color: #cd9c32;
+    margin-bottom: 0;
 }
 
 .usp-content h3 {
     font-size: 1.15rem;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     color: #0d2818;
 }
 
@@ -678,6 +694,7 @@ section {
     font-size: 0.95rem;
     color: #556a53;
     line-height: 1.5;
+    min-height: 4.5em;
 }
 
 @media (max-width: 1100px) {
@@ -1280,6 +1297,14 @@ section {
 
 .export-content {
     position: relative;
+}
+
+.export-content h1 {
+    margin: 15px 0 20px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.5rem, 5vw, 4.8rem);
+    line-height: 1.15;
+    color: #0c3515;
 }
 
 .export-meta {
