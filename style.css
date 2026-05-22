@@ -609,6 +609,7 @@ section {
 }
 
 .about {
+    padding: 70px 0;
     background:
         radial-gradient(circle at 16% 22%, rgba(46, 125, 50, 0.12), transparent 30%),
         radial-gradient(circle at 82% 75%, rgba(215, 173, 66, 0.16), transparent 33%),
@@ -617,7 +618,7 @@ section {
 
 .about-top {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -643,15 +644,27 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 
 .about-usp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 60px;
+    margin-top: 40px;
 }
+
+.about-para {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.about-para:last-child {
+    margin-bottom: 0;
+}
+
 
 .about-usp-card {
     display: flex;
@@ -714,7 +727,7 @@ section {
 }
 .about-visual-wrap {
     position: relative;
-    min-height: 610px;
+    min-height: 520px;
     perspective: 1400px;
 }
 
@@ -729,14 +742,14 @@ section {
 
 .about-frame-main {
     width: 76%;
-    height: 480px;
+    height: 430px;
     top: 0;
     right: 60px;
 }
 
 .about-frame-side {
     width: 48%;
-    height: 255px;
+    height: 230px;
     right: 0;
     bottom: 28px;
 }
