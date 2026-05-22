@@ -760,13 +760,6 @@ function initPageLogic() {
                 duration: 0.5
             }, 0.35);
 
-        gsap.to(".export-scan-line", {
-            top: "82%",
-            duration: 3,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
 
         gsap.to(".export-badge-a", {
             y: -8,
