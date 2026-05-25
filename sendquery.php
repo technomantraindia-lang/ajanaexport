@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject_type = isset($_POST["subject"]) ? strip_tags(trim($_POST["subject"])) : (isset($_POST["product_type"]) ? strip_tags(trim($_POST["product_type"])) : 'N/A');
     $message      = isset($_POST["message"]) ? strip_tags(trim($_POST["message"])) : '';
 
-    // Check required fields
-    if (empty($name) || empty($email) || empty($phone)) {
+    // Check required fields (phone is optional in HTML UI)
+    if (empty($name) || empty($email)) {
         echo "Please fill in all required fields.";
         exit;
     }
@@ -120,7 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: contact.html?status=success");
             exit;
         } else {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            header("Location: contact.html?status=error");
+            exit;
         }
     }
 
