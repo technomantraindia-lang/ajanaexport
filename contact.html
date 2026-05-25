@@ -96,7 +96,12 @@
                                 <p>Fill out the form below and our export division will get back to you within 24 hours.
                                 </p>
                             </div>
-                            <form id="contact-form" action="sendquery.php" method="POST">
+                            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                                <!-- Create a free Access Key at https://web3forms.com and paste it below -->
+                                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                                <input type="hidden" name="subject" value="New Inquiry from Website">
+                                <input type="hidden" name="redirect" value="https://ajanaexport.vercel.app/contact.html?status=success">
+                                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="name">Full Name</label>
