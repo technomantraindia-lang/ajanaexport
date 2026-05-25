@@ -390,7 +390,7 @@ function initPageLogic() {
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: "#why",
-                    start: "top 72%"
+                    start: "top 90%"
                 }
             });
 
@@ -404,7 +404,7 @@ function initPageLogic() {
                 ease: "back.out(1.4)",
                 scrollTrigger: {
                     trigger: ".why-hub-wrap",
-                    start: "top 78%"
+                    start: "top 95%"
                 }
             });
         });

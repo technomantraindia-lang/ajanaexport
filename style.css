@@ -41,6 +41,11 @@ img {
     display: block;
 }
 
+.mobile-br {
+    display: none;
+}
+
+
 a {
     color: inherit;
     text-decoration: none;
@@ -226,7 +231,7 @@ button {
 }
 
 .hero {
-    min-height: 100vh;
+    min-height: 90vh;
     position: relative;
     overflow: hidden;
     background: #000;
@@ -518,9 +523,9 @@ section {
 
 .hub-globe-wrap {
     position: relative;
-    width: 86px;
-    height: 86px;
-    margin-bottom: 14px;
+    width: 76px;
+    height: 76px;
+    margin-bottom: 10px;
     display: grid;
     place-items: center;
     transform: translateZ(44px);
@@ -548,8 +553,8 @@ section {
 }
 
 .hub-globe {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     color: #f4ecc8;
     stroke: currentColor;
     fill: none;
@@ -565,12 +570,12 @@ section {
 
 .hub-title span {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
 }
 
 .hub-title span:last-child {
-    font-size: 1.28rem;
+    font-size: 1.1rem;
     margin-top: 4px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -2018,10 +2023,14 @@ footer a:hover {
 
 @media (max-width: 600px) {
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
     }
     .footer-about-col, .footer-contact-col {
-        grid-column: span 1;
+        grid-column: span 2;
+    }
+    .copyright {
+        margin-top: 40px;
     }
     footer {
         padding: 60px 0 30px;
@@ -2162,13 +2171,13 @@ footer a:hover {
         display: block;
     }
 
-    .header {
+    .header, .header.scrolled {
         padding: 0 30px;
     }
 
-    .logo img {
-        height: 110px;
-        margin: -15px 0;
+    .logo img, .header.scrolled .logo img {
+        height: 110px !important;
+        margin: -10px 0 -20px 0 !important;
     }
 
     .nav-links.active {
@@ -2267,13 +2276,13 @@ footer a:hover {
         padding: 65px 0;
     }
 
-    .header {
+    .header, .header.scrolled {
         padding: 0 16px;
     }
 
-    .logo img {
-        height: 90px;
-        margin: -10px 0;
+    .logo img, .header.scrolled .logo img {
+        height: 90px !important;
+        margin: -5px 0 -15px 0 !important;
     }
 
     .quick-inquiry-btn {
@@ -2284,6 +2293,22 @@ footer a:hover {
     .bottom-stats,
     .hero-buttons {
         flex-direction: column;
+    }
+
+    .hero {
+        min-height: 55vh !important;
+    }
+
+    .export-photo-wrap img {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .export-content h1 span {
+        display: inline !important;
     }
 
     .about-usp-grid {
@@ -2434,6 +2459,22 @@ footer a:hover {
         width: 200px !important;
         height: 230px !important;
         padding: 22px !important;
+    }
+    .hub-card .hub-title span {
+        font-size: 1.2rem !important;
+    }
+    .hub-card .hub-title span:last-child {
+        font-size: 0.9rem !important;
+        letter-spacing: 1px !important;
+    }
+    .hub-card .hub-globe-wrap {
+        width: 60px !important;
+        height: 60px !important;
+        margin-bottom: 5px !important;
+    }
+    .hub-card .hub-globe {
+        width: 28px !important;
+        height: 28px !important;
     }
     .center-hub {
         min-height: 310px !important;
@@ -3733,6 +3774,19 @@ footer a:hover {
     width: 160px;
     height: 160px;
   }
+  .trust-node h3 {
+    font-size: 16px !important;
+  }
+  .trust-node p {
+    font-size: 9px !important;
+    letter-spacing: 0.2px !important;
+    margin: 4px 0 0 !important;
+  }
+  .trust-node .trust-icon {
+    width: 44px !important;
+    height: 44px !important;
+    margin-bottom: 4px !important;
+  }
 }
 
 
@@ -4161,12 +4215,15 @@ footer a:hover {
         padding: 60px 0;
     }
     .livestock-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px 20px !important;
     }
     .livestock-icon {
-        width: 100px;
-        height: 100px;
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .livestock-item span {
+        font-size: 0.9rem !important;
     }
 }
 
@@ -4912,5 +4969,36 @@ footer a:hover {
     text-shadow: 0 2px 8px rgba(0,0,0,0.9) !important;
     opacity: 0.95;
     font-weight: 500;
+}
+
+/* Mobile overrides for Products & Detail Pages */
+@media (max-width: 768px) {
+    .mobile-br {
+        display: block !important;
+    }
+    .balanced-nutrition {
+        padding: 60px 0 30px 0 !important;
+    }
+    .related-products {
+        padding: 40px 0 60px 0 !important;
+    }
+    .intro-text p, 
+    .ph-desc, 
+    .banner-content p, 
+    .banner-text p, 
+    .nutrition-text p {
+        text-align: justify !important;
+    }
+    .banner-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    .banner-visual {
+        order: 2 !important;
+    }
+    .banner-text {
+        order: 1 !important;
+        text-align: left !important;
+    }
 }
 

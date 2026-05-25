@@ -90,7 +90,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
 
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // Fallback to PHP native mail() function in case SMTP fails
+        $to = 'support@ajanaimpex.com';
+        $subject = "New Inquiry from " . $name . " - " . ucfirst($subject_type);
+        
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers .= "From: Ajana Impex Website <noreply@ajanaimpex.com>\r\n";
+        $headers .= "Reply-To: {$name} <{$email}>\r\n";
+        
+        $email_body = "
+            <div style='font-family: sans-serif; line-height: 1.6; color: #333;'>
+                <h2 style='color: #c10000;'>New Website Inquiry</h2>
+                <hr>
+                <p><strong>Name:</strong> {$name}</p>
+                <p><strong>Company:</strong> {$company}</p>
+                <p><strong>Email:</strong> {$email}</p>
+                <p><strong>Phone:</strong> {$phone}</p>
+                <p><strong>Inquiry Subject:</strong> {$subject_type}</p>
+                <p><strong>Message:</strong><br>{$message}</p>
+                <hr>
+                <p style='font-size: 0.8rem; color: #888;'>
+                    This email was sent from the Ajana Impex website contact form using PHP mail fallback.
+                </p>
+            </div>
+        ";
+        
+        if (mail($to, $subject, $email_body, $headers)) {
+            header("Location: contact.html?status=success");
+            exit;
+        } else {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 
 } else {
