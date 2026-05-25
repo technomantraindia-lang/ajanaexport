@@ -2386,6 +2386,8 @@ footer a:hover {
         width: 100% !important;
         height: auto !important;
         object-fit: contain !important;
+        transform: scale(1.08) !important;
+        transform-origin: center center !important;
     }
 
     .about-visual-wrap {
