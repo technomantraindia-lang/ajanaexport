@@ -2383,7 +2383,8 @@ footer a:hover {
     }
 
     .about-hero-bg img {
-        height: auto;
+        height: 240px !important;
+        object-fit: cover !important;
     }
 
     .about-visual-wrap {
@@ -2835,6 +2836,18 @@ footer a:hover {
     
     .feature-line-system {
         display: none;
+    }
+    
+    .quality-image-main {
+        height: 320px !important;
+    }
+    
+    .quality-content h2 {
+        font-size: 1.7rem !important;
+    }
+    
+    .quality-content h2 span.gold-text {
+        white-space: nowrap !important;
     }
 }
 
@@ -4854,9 +4867,11 @@ footer a:hover {
     }
 
     .process-video-wrap {
+        border: none !important;
         border-radius: 15px;
-        border-width: 4px;
         margin: 20px 16px 0;
+        box-shadow: none !important;
+        background: transparent !important;
     }
 }
 
@@ -4871,8 +4886,9 @@ footer a:hover {
     margin: 40px auto 0;
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 40px 100px rgba(12, 53, 21, 0.15);
-    border: 8px solid #fff;
+    box-shadow: none;
+    border: none;
+    background: transparent;
     position: relative;
 }
 
@@ -4880,6 +4896,7 @@ footer a:hover {
     width: 100%;
     display: block;
     filter: contrast(1.05);
+    mix-blend-mode: multiply;
 }
 
 
@@ -4977,10 +4994,10 @@ footer a:hover {
         display: block !important;
     }
     .balanced-nutrition {
-        padding: 60px 0 30px 0 !important;
+        padding: 50px 0 !important;
     }
     .related-products {
-        padding: 40px 0 60px 0 !important;
+        padding: 50px 0 !important;
     }
     .intro-text p, 
     .ph-desc, 
@@ -4999,6 +5016,75 @@ footer a:hover {
     .banner-text {
         order: 1 !important;
         text-align: left !important;
+    }
+
+    /* Stacking nutrition-grid vertically on mobile */
+    .nutrition-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    
+    /* Title and heading spacing checks */
+    .product-hero {
+        padding-top: 100px !important;
+        min-height: auto !important;
+    }
+    .ph-left {
+        padding: 60px 20px 40px !important;
+    }
+    .ph-tag {
+        margin-bottom: 15px !important;
+    }
+    .ph-title {
+        font-size: 3rem !important;
+        margin-bottom: 15px !important;
+    }
+    .ph-desc {
+        margin-bottom: 25px !important;
+        font-size: 1rem !important;
+    }
+    
+    .nutrition-text .tag {
+        margin-bottom: 12px !important;
+    }
+    .nutrition-text h2 {
+        font-size: 2.4rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 20px !important;
+        line-height: 1.15 !important;
+    }
+    .nutrition-text p {
+        font-size: 1rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .production-process {
+        padding: 50px 0 !important;
+    }
+    .production-process .section-title {
+        margin-bottom: 30px !important;
+    }
+    .production-process .section-title h2 {
+        font-size: 2.4rem !important;
+        margin-top: 8px !important;
+        margin-bottom: 15px !important;
+        line-height: 1.15 !important;
+    }
+    .production-process .section-title p {
+        font-size: 1rem !important;
+    }
+    
+    .related-products .section-title {
+        margin-bottom: 30px !important;
+    }
+    .related-products .section-title h2 {
+        font-size: 2.4rem !important;
+        margin-top: 8px !important;
+        margin-bottom: 15px !important;
+        line-height: 1.15 !important;
+    }
+    .related-products .section-title p {
+        font-size: 1rem !important;
     }
 }
 
