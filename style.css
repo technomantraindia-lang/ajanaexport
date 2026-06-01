@@ -4831,6 +4831,7 @@ footer a:hover {
 .contact-form-wrap .form-header h2 { color: #fff; }
 .contact-form-wrap .form-header h2 span { color: #cd9c32; }
 .contact-form-wrap .form-group input, .contact-form-wrap .form-group select, .contact-form-wrap .form-group textarea { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
+.contact-form-wrap .form-group select option { color: #000; background-color: #fff; }
 
 
 .hc-wrap { max-width: 800px; margin: 0 auto; text-align: center; }

@@ -98,7 +98,7 @@
                             </div>
                             <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
                                 <!-- Create a free Access Key at https://web3forms.com and paste it below -->
-                                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                                <input type="hidden" name="access_key" value="039c32cd-7b37-400c-be34-2c777ddd417e">
                                 <input type="hidden" name="subject" value="New Inquiry from Website">
                                 <input type="hidden" name="redirect" value="https://ajanaexport.vercel.app/contact.html?status=success">
                                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
@@ -150,12 +150,120 @@
     <script src="script.js?v=2.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('contact-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const button = form.querySelector('button[type="submit"]');
+                    const originalText = button.innerHTML;
+                    button.innerHTML = 'Sending... <span>⌛</span>';
+                    button.disabled = true;
+
+                    // Remove any existing alerts
+                    const existingAlert = document.querySelector('.form-alert');
+                    if (existingAlert) existingAlert.remove();
+
+                    const formData = new FormData(form);
+                    const object = {};
+                    formData.forEach((value, key) => object[key] = value);
+                    const json = JSON.stringify(object);
+
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: json
+                    })
+                    .then(async (response) => {
+                        let jsonResponse = await response.json();
+                        const formContainer = document.querySelector('.form-container');
+                        if (formContainer) {
+                            const alertDiv = document.createElement('div');
+                            alertDiv.className = 'form-alert';
+                            alertDiv.style.padding = '15px 20px';
+                            alertDiv.style.borderRadius = '12px';
+                            alertDiv.style.marginBottom = '20px';
+                            alertDiv.style.fontSize = '0.95rem';
+                            alertDiv.style.fontWeight = '600';
+                            alertDiv.style.display = 'flex';
+                            alertDiv.style.alignItems = 'center';
+                            alertDiv.style.gap = '10px';
+                            alertDiv.style.animation = 'fadeInUp 0.5s ease forwards';
+
+                            if (response.status === 200) {
+                                alertDiv.style.background = '#e8f5e9';
+                                alertDiv.style.color = '#2e7d32';
+                                alertDiv.style.border = '1px solid #c8e6c9';
+                                alertDiv.innerHTML = `
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 20px; height: 20px;">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span>Thank you! Your inquiry has been sent successfully.</span>
+                                `;
+                                form.reset();
+                            } else {
+                                alertDiv.style.background = '#ffebee';
+                                alertDiv.style.color = '#c62828';
+                                alertDiv.style.border = '1px solid #ffcdd2';
+                                alertDiv.innerHTML = `
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 20px; height: 20px;">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                    </svg>
+                                    <span>${jsonResponse.message || 'Failed to send inquiry. Please try again or email us directly.'}</span>
+                                `;
+                            }
+                            formContainer.insertBefore(alertDiv, form);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Web3Forms Error:', error);
+                        const formContainer = document.querySelector('.form-container');
+                        if (formContainer) {
+                            const alertDiv = document.createElement('div');
+                            alertDiv.className = 'form-alert';
+                            alertDiv.style.padding = '15px 20px';
+                            alertDiv.style.borderRadius = '12px';
+                            alertDiv.style.marginBottom = '20px';
+                            alertDiv.style.fontSize = '0.95rem';
+                            alertDiv.style.fontWeight = '600';
+                            alertDiv.style.display = 'flex';
+                            alertDiv.style.alignItems = 'center';
+                            alertDiv.style.gap = '10px';
+                            alertDiv.style.animation = 'fadeInUp 0.5s ease forwards';
+                            alertDiv.style.background = '#ffebee';
+                            alertDiv.style.color = '#c62828';
+                            alertDiv.style.border = '1px solid #ffcdd2';
+                            alertDiv.innerHTML = `
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 20px; height: 20px;">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                                <span>Failed to send inquiry. Please try again or email us directly.</span>
+                            `;
+                            formContainer.insertBefore(alertDiv, form);
+                        }
+                    })
+                    .finally(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    });
+                });
+            }
+
+            // Fallback checking of URL params in case redirected manually
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
             if (status === 'success' || status === 'error') {
                 const formContainer = document.querySelector('.form-container');
                 if (formContainer) {
                     const alertDiv = document.createElement('div');
+                    alertDiv.className = 'form-alert';
                     alertDiv.style.padding = '15px 20px';
                     alertDiv.style.borderRadius = '12px';
                     alertDiv.style.marginBottom = '20px';
@@ -189,9 +297,7 @@
                             <span>Failed to send inquiry. Please try again or email us directly.</span>
                         `;
                     }
-                    formContainer.insertBefore(alertDiv, formContainer.querySelector('form'));
-                    
-                    // Clean up URL parameter to avoid showing the alert again on refresh
+                    formContainer.insertBefore(alertDiv, form);
                     window.history.replaceState({}, document.title, window.location.pathname);
                 }
             }
