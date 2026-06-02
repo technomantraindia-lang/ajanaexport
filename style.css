@@ -1968,6 +1968,10 @@ footer a:hover {
     fill: #ffffff !important;
 }
 
+.fs-circle.fs-ig svg {
+    fill: none !important;
+}
+
 .footer-contact-col p {
     margin-bottom: 20px;
     line-height: 1.6;

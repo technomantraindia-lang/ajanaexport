@@ -992,14 +992,37 @@ if (phSlideshow) {
     if (phSlides.length > 0) {
         let currentSlide = 0;
         
-        // Initial setup: hide all except first
+        // Find matching slide index based on the page title
+        const phTitle = document.querySelector('.ph-title');
+        if (phTitle) {
+            const pageProduct = phTitle.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+            phSlides.forEach((slide, idx) => {
+                const slideTitle = slide.querySelector('h3')?.textContent?.replace(/\s+/g, ' ')?.trim()?.toLowerCase();
+                if (slideTitle && (pageProduct === slideTitle || pageProduct.includes(slideTitle))) {
+                    if (pageProduct === slideTitle) {
+                        currentSlide = idx;
+                    } else if (currentSlide === 0) {
+                        currentSlide = idx;
+                    }
+                }
+            });
+        }
+
+        // Initial setup: hide all except starting slide, sync active class
+        phSlides.forEach(slide => slide.classList.remove('active'));
+        phSlides[currentSlide].classList.add('active');
+
         gsap.set(phSlides, { x: "100%", opacity: 0 });
-        gsap.set(phSlides[0], { x: "0%", opacity: 1 });
+        gsap.set(phSlides[currentSlide], { x: "0%", opacity: 1 });
 
         setInterval(() => {
             const prevSlide = phSlides[currentSlide];
             currentSlide = (currentSlide + 1) % phSlides.length;
             const nextSlide = phSlides[currentSlide];
+
+            // Update active class for scale(1) effect
+            prevSlide.classList.remove('active');
+            nextSlide.classList.add('active');
 
             // 1. Current slide moves LEFT and fades out
             gsap.to(prevSlide, { 
