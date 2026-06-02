@@ -1968,8 +1968,13 @@ footer a:hover {
     fill: #ffffff !important;
 }
 
-.fs-circle.fs-ig svg {
+.fs-circle.fs-ig svg,
+.fs-circle.fs-ig svg rect,
+.fs-circle.fs-ig svg path,
+.fs-circle.fs-ig svg line {
     fill: none !important;
+    stroke: #ffffff !important;
+    stroke-width: 2px !important;
 }
 
 .footer-contact-col p {
